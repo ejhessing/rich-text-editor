@@ -2,7 +2,7 @@ import React from "react";
 import { Layout, Button } from "antd";
 import "./App.css";
 
-import MyEditor from "./MyEditor/MyEditor";
+import MyEditor from "./MyEditor";
 const { Content } = Layout;
 
 const App: React.FC = () => {

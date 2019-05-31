@@ -1,0 +1,5 @@
+{
+  "fontStyles": ["BOLD", "ITALIC", "UNDERLINE"],
+  "blockStyles": ["ORDERED-LIST", "UNORDERED-LIST"],
+  "special": ["HYPERLINK", "IMAGE", "VIDEO"]
+}

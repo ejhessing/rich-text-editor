@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 import { Editor, EditorState } from "draft-js";
+import Toolbar from "../Toolbar";
 
-function MyEditor() {
+const MyEditor = props => {
   const emptyState = EditorState.createEmpty();
   const [editorState, setEditorState] = useState(emptyState);
 
@@ -12,9 +13,10 @@ function MyEditor() {
 
   return (
     <div style={{ background: "lightgray", minHeight: "250px" }}>
+      <Toolbar onChange={onChange} editorState={editorState} />
       <Editor editorState={editorState} onChange={onChange} />
     </div>
   );
-}
+};
 
 export default MyEditor;
