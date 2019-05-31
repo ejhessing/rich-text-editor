@@ -1,15 +1,18 @@
 import React from "react";
+import { Tooltip } from "antd";
 
 const ButtonWrapper = ({ children, onClickFn, hint }) => {
   return (
-    <span
-      onMouseDown={e => {
-        e.preventDefault();
-        onClickFn(e);
-      }}
-    >
-      {children}
-    </span>
+    <Tooltip title={hint}>
+      <span
+        onMouseDown={e => {
+          e.preventDefault();
+          onClickFn(e);
+        }}
+      >
+        {children}
+      </span>
+    </Tooltip>
   );
 };
 
