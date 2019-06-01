@@ -1,14 +1,23 @@
 import React, { useState } from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import ToolbarGroup from "@material-ui/core/Toolbar";
+import ToolbarSeparator from "@material-ui/core/Toolbar";
 import FontStyles from "./FontStyles.js";
 import BlockStyles from "./BlockStyles/index.js";
 
-const Toolbar = ({ onChange, editorState }) => {
+const MyToolbar = ({ onChange, editorState }) => {
   return (
-    <div style={{ background: "blue", minHeight: "30px" }}>
-      <FontStyles onChange={onChange} editorState={editorState} />
-      <BlockStyles onChange={onChange} editorState={editorState} />
-    </div>
+    <AppBar position="static" color="default">
+      <Toolbar style={{ background: "lightblue", minHeight: "30px" }}>
+        <ToolbarGroup>
+          <FontStyles onChange={onChange} editorState={editorState} />
+          <ToolbarSeparator style={{ height: "25px" }} />
+          <BlockStyles onChange={onChange} editorState={editorState} />
+        </ToolbarGroup>
+      </Toolbar>
+    </AppBar>
   );
 };
 
-export default Toolbar;
+export default MyToolbar;

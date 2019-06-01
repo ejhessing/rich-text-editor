@@ -1,13 +1,12 @@
 import React from "react";
-import { Button, Icon } from "antd";
 import { RichUtils } from "draft-js";
 
-import ButtonWrapper from "../ButtonWrapper";
 import { fontStyles } from "../../Constants/Toolbar";
+import ToolbarIcon from "../ToolbarIcon";
 
 const FontStyles = ({ editorState, onChange }) => {
-  const onClick = e => {
-    onChange(RichUtils.toggleInlineStyle(editorState, e.target.name));
+  const onClick = type => {
+    onChange(RichUtils.toggleInlineStyle(editorState, type));
   };
 
   const currentStyles = editorState.getCurrentInlineStyle();
@@ -15,18 +14,18 @@ const FontStyles = ({ editorState, onChange }) => {
   const fontIcons = fontStyles.map(({ type, icon, hint }) => {
     const isActive = currentStyles.has(type);
 
-    const style = isActive ? "blue" : "black";
-
     return (
-      <ButtonWrapper key={type} onClickFn={onClick} hint={hint}>
-        <Button name={type}>
-          <Icon type={icon} style={{ color: style }} theme="outlined" />
-        </Button>
-      </ButtonWrapper>
+      <ToolbarIcon
+        type={type}
+        onClick={onClick}
+        hint={hint}
+        icon={icon}
+        isActive={isActive}
+      />
     );
   });
 
-  return <span>{fontIcons}</span>;
+  return <React.Fragment>{fontIcons}</React.Fragment>;
 };
 
 export default FontStyles;

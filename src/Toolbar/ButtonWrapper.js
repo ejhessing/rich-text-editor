@@ -1,13 +1,13 @@
 import React from "react";
-import { Tooltip } from "antd";
+import Tooltip from "@material-ui/core/Tooltip";
 
-const ButtonWrapper = ({ children, onClickFn, hint }) => {
+const ButtonWrapper = ({ children, onClickFn, hint, type }) => {
   return (
-    <Tooltip title={hint}>
+    <Tooltip title={hint} placement="top">
       <span
         onMouseDown={e => {
           e.preventDefault();
-          onClickFn(e);
+          onClickFn(type);
         }}
       >
         {children}
