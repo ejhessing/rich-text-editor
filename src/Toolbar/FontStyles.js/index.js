@@ -16,6 +16,7 @@ const FontStyles = ({ editorState, onChange }) => {
 
     return (
       <ToolbarIcon
+        key={type}
         type={type}
         onClick={onClick}
         hint={hint}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Container from "@material-ui/core/Container";
 import { Editor, EditorState } from "draft-js";
 import Toolbar from "../Toolbar";
 
@@ -13,8 +13,14 @@ const MyEditor = props => {
 
   return (
     <div style={{ background: "lightgray", minHeight: "250px" }}>
-      <Toolbar onChange={onChange} editorState={editorState} />
-      <Editor editorState={editorState} onChange={onChange} />
+      <Container maxWidth="lg">
+        <Toolbar onChange={onChange} editorState={editorState} />
+        <div
+          style={{ background: "white", minHeight: "250px", padding: "25px" }}
+        >
+          <Editor editorState={editorState} onChange={onChange} />
+        </div>
+      </Container>
     </div>
   );
 };

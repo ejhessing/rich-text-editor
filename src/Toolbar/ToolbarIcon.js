@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ButtonWrapper from "./ButtonWrapper";
 
 const ToolbarIcon = ({ type, onClick, hint, icon, isActive }) => {
-  const color = !isActive ? "" : "primary";
+  const color = !isActive ? "inherit" : "primary";
 
   return (
     <ButtonWrapper key={type} onClickFn={onClick} type={type} hint={hint}>
