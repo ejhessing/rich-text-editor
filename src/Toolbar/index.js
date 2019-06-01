@@ -3,8 +3,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import ToolbarGroup from "@material-ui/core/Toolbar";
 import ToolbarSeparator from "@material-ui/core/Toolbar";
-import FontStyles from "./FontStyles.js";
+import FontStyles from "./FontStyles/index.js";
 import BlockStyles from "./BlockStyles/index.js";
+import Hyperlink from "./Hyperlink/index.js";
 
 const MyToolbar = ({ onChange, editorState }) => {
   return (
@@ -14,6 +15,8 @@ const MyToolbar = ({ onChange, editorState }) => {
           <FontStyles onChange={onChange} editorState={editorState} />
           <ToolbarSeparator style={{ height: "25px" }} />
           <BlockStyles onChange={onChange} editorState={editorState} />
+          <ToolbarSeparator style={{ height: "25px" }} />
+          <Hyperlink onChange={onChange} editorState={editorState} />
         </ToolbarGroup>
       </Toolbar>
     </AppBar>
