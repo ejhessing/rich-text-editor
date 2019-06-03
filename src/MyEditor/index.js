@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
-import { Editor, EditorState } from "draft-js";
+import { CompositeDecorator, Editor, EditorState } from "draft-js";
+import hyperlinkDecorator from "../Decorators/Hyperlinks";
 import Toolbar from "../Toolbar";
 
+const setDecorators = () => {
+  return new CompositeDecorator([hyperlinkDecorator]);
+};
+
 const MyEditor = props => {
-  const emptyState = EditorState.createEmpty();
+  const emptyState = EditorState.createEmpty(setDecorators());
   const [editorState, setEditorState] = useState(emptyState);
 
   const onChange = editorState => {

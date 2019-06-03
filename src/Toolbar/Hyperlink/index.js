@@ -1,19 +1,18 @@
 import React from "react";
-import { RichUtils } from "draft-js";
 
-import { fontStyles } from "../../Constants/Toolbar";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
+import { insertLink } from "./hyperlinkUtils";
 
 const Hyperlink = ({ editorState, onChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [values, setValues] = React.useState({
     linkTitle: "",
-    url: ""
+    urlValue: ""
   });
 
   const handleChange = name => e => {
@@ -28,9 +27,27 @@ const Hyperlink = ({ editorState, onChange }) => {
     setAnchorEl(null);
   };
 
-  const insertLink = () => {};
+  const onAddLink = e => {
+    e.preventDefault();
+    const { urlValue, linkTitle } = values;
+    const newEditorState = insertLink({ editorState, urlValue, linkTitle });
+    onChange(newEditorState);
+    setValues({
+      urlValue: "",
+      linkTitle: ""
+    });
+    setAnchorEl(null);
+  };
 
   const removeLink = () => {};
+
+  const onInputKeyDown = e => {
+    const enterKey = 13;
+    if (e.which === enterKey) {
+      e.preventDefault();
+      onAddLink(e);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -49,7 +66,6 @@ const Hyperlink = ({ editorState, onChange }) => {
       >
         <MenuItem>
           <TextField
-            id="standard-uncontrolled"
             label="Link title"
             placeholder="Title"
             margin="normal"
@@ -59,21 +75,25 @@ const Hyperlink = ({ editorState, onChange }) => {
         </MenuItem>
         <MenuItem>
           <TextField
-            id="standard-uncontrolled"
             label="Link"
             placeholder="https://"
-            onChange={handleChange("url")}
-            value={values.url}
+            onChange={handleChange("urlValue")}
+            onKeyDown={onInputKeyDown}
+            value={values.urlValue}
             margin="normal"
           />
         </MenuItem>
         <MenuItem>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={onAddLink}>
             Save
           </Button>
-          <Button variant="contained" style={{ margin: "20px" }}>
+          <Button
+            variant="contained"
+            style={{ margin: "20px" }}
+            onClick={handleClose}
+          >
             Cancel
-          </Button>{" "}
+          </Button>
         </MenuItem>
       </Menu>
     </React.Fragment>

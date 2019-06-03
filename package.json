@@ -12,6 +12,7 @@
     "@types/react-dom": "16.8.4",
     "babel-plugin-import": "^1.11.2",
     "draft-js": "^0.10.5",
+    "draftjs-utils": "^0.9.4",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
