@@ -1,6 +1,6 @@
 import React from "react";
 
-const findLinkEntities = (contentBlock, callback, contentState) => {
+export const findLinkEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
     return (
@@ -10,14 +10,11 @@ const findLinkEntities = (contentBlock, callback, contentState) => {
   }, callback);
 };
 
-const Link = ({ children, contentState, entityKey }) => {
+export const Link = ({ children, contentState, entityKey, clickLink }) => {
   const { url } = contentState.getEntity(entityKey).getData();
-  return <a href={url}>{children}</a>;
+  return (
+    <a href={url} onClick={clickLink}>
+      {children}
+    </a>
+  );
 };
-
-const hyperlinkDecorator = {
-  strategy: findLinkEntities,
-  component: Link
-};
-
-export default hyperlinkDecorator;

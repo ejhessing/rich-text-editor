@@ -25,6 +25,10 @@ const Hyperlink = ({ editorState, onChange }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setValues({
+      urlValue: "",
+      linkTitle: ""
+    });
   };
 
   const onAddLink = e => {
@@ -38,8 +42,6 @@ const Hyperlink = ({ editorState, onChange }) => {
     });
     setAnchorEl(null);
   };
-
-  const removeLink = () => {};
 
   const onInputKeyDown = e => {
     const enterKey = 13;
