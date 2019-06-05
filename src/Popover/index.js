@@ -4,15 +4,15 @@ import Typography from "@material-ui/core/Typography";
 
 const Pop = props => {
   const { popoverOpen, position, onClose } = props;
+  const { top, left = 0, height } = position;
 
-  const top = 200;
-  const left = 400;
+  const topPos = top + height || 0;
 
   return (
     <Popover
       id={"popover"}
       anchorReference="anchorPosition"
-      anchorPosition={{ top, left }}
+      anchorPosition={{ top: topPos, left }}
       open={popoverOpen}
       onClose={onClose}
       anchorOrigin={{

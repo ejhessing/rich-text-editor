@@ -4,6 +4,7 @@ import { Editor, EditorState } from "draft-js";
 import decorator from "../Decorators";
 import Toolbar from "../Toolbar";
 import Pop from "../Popover";
+import { getPosition, getSelected } from "../Utils";
 
 const MyEditor = props => {
   const [initialized, setInitialized] = useState(false);
@@ -12,11 +13,19 @@ const MyEditor = props => {
   const emptyState = EditorState.createEmpty();
   const [editorState, setEditorState] = useState(emptyState);
   const [popoverOpen, setPopoverOpen] = useState(false);
+  const [position, setPosition] = useState({});
   const onPopoverClose = () => {
     setPopoverOpen(false);
   };
   const onPopoverOpen = () => {
-    setPopoverOpen(true);
+    const selected = getSelected();
+
+    if (selected.rangeCount > 0) {
+      setTimeout(() => {
+        setPosition(getPosition(selected));
+        setPopoverOpen(true);
+      }, 1);
+    }
   };
 
   useEffect(() => {
@@ -59,7 +68,12 @@ const MyEditor = props => {
             ref={myEditorRef}
           />
         </div>
-        <Pop onClose={onPopoverClose} popoverOpen={popoverOpen} />
+
+        <Pop
+          onClose={onPopoverClose}
+          popoverOpen={popoverOpen}
+          position={position}
+        />
       </Container>
     </div>
   );
