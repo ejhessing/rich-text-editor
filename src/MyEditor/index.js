@@ -73,6 +73,8 @@ const MyEditor = props => {
           onClose={onPopoverClose}
           popoverOpen={popoverOpen}
           position={position}
+          editorState={editorState}
+          onChange={onChange}
         />
       </Container>
     </div>

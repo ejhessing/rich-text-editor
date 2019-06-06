@@ -1,5 +1,9 @@
-import { EditorState, Modifier } from "draft-js";
-import { getEntityRange, getSelectionEntity } from "draftjs-utils";
+import { EditorState, Modifier, RichUtils } from "draft-js";
+import {
+  getEntityRange,
+  getSelectionEntity,
+  getSelectionText
+} from "draftjs-utils";
 
 export const getSelection = ({ editorState, currentEntity, selection }) => {
   const entityRange = getEntityRange(editorState, currentEntity);
@@ -18,7 +22,7 @@ export const getSelection = ({ editorState, currentEntity, selection }) => {
   });
 };
 
-export const insertLink = ({ editorState, urlValue, linkTitle }) => {
+export const insertLink = ({ editorState, linkValue, linkTitle }) => {
   const contentState = editorState.getCurrentContent();
   const currentEntity = getSelectionEntity(editorState);
   const currentSelection = editorState.getSelection();
@@ -30,7 +34,7 @@ export const insertLink = ({ editorState, urlValue, linkTitle }) => {
   const contentStateWithEntity = contentState.createEntity(
     "LINK",
     "MUTABLE", //Immutable?
-    { url: urlValue }
+    { link: linkValue }
   );
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
@@ -70,4 +74,47 @@ export const insertLink = ({ editorState, urlValue, linkTitle }) => {
     contentStateWithSpace,
     "insert-characters"
   );
+};
+
+export const removeLink = ({ editorState }) => {
+  const currentEntity = getSelectionEntity(editorState);
+
+  if (currentEntity) {
+    const currentSelection = editorState.getSelection();
+
+    const fullSelection = getSelection({
+      editorState,
+      currentEntity,
+      selection: currentSelection
+    });
+
+    const esWithoutLink = RichUtils.toggleLink(
+      editorState,
+      fullSelection,
+      null
+    );
+
+    // Get link text and add it to selection
+    const esWithoutSelection = EditorState.acceptSelection(
+      esWithoutLink,
+      esWithoutLink.getSelection().merge({
+        anchorOffset: currentSelection.get("anchorOffset") + 0,
+        focusOffset: currentSelection.get("anchorOffset") + 0
+      })
+    );
+
+    return esWithoutSelection;
+  }
+};
+
+export const getLink = ({ editorState }) => {
+  const currentEntity = getSelectionEntity(editorState);
+  const contentState = editorState.getCurrentContent();
+  if (
+    currentEntity &&
+    contentState.getEntity(currentEntity).get("type") === "LINK"
+  ) {
+    return contentState.getEntity(currentEntity).get("data").link;
+  }
+  return null;
 };

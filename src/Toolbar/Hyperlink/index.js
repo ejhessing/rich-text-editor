@@ -12,7 +12,7 @@ const Hyperlink = ({ editorState, onChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [values, setValues] = React.useState({
     linkTitle: "",
-    urlValue: ""
+    linkValue: ""
   });
 
   const handleChange = name => e => {
@@ -26,18 +26,18 @@ const Hyperlink = ({ editorState, onChange }) => {
   const handleClose = () => {
     setAnchorEl(null);
     setValues({
-      urlValue: "",
+      linkValue: "",
       linkTitle: ""
     });
   };
 
   const onAddLink = e => {
     e.preventDefault();
-    const { urlValue, linkTitle } = values;
-    const newEditorState = insertLink({ editorState, urlValue, linkTitle });
+    const { linkValue, linkTitle } = values;
+    const newEditorState = insertLink({ editorState, linkValue, linkTitle });
     onChange(newEditorState);
     setValues({
-      urlValue: "",
+      linkValue: "",
       linkTitle: ""
     });
     setAnchorEl(null);
@@ -79,9 +79,9 @@ const Hyperlink = ({ editorState, onChange }) => {
           <TextField
             label="Link"
             placeholder="https://"
-            onChange={handleChange("urlValue")}
+            onChange={handleChange("linkValue")}
             onKeyDown={onInputKeyDown}
-            value={values.urlValue}
+            value={values.linkValue}
             margin="normal"
           />
         </MenuItem>

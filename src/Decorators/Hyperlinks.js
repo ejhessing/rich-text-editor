@@ -11,9 +11,9 @@ export const findLinkEntities = (contentBlock, callback, contentState) => {
 };
 
 export const Link = ({ children, contentState, entityKey, clickLink }) => {
-  const { url } = contentState.getEntity(entityKey).getData();
+  const { link } = contentState.getEntity(entityKey).getData();
   return (
-    <a href={url} onClick={clickLink}>
+    <a href={link} onClick={clickLink}>
       {children}
     </a>
   );
