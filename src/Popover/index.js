@@ -26,7 +26,7 @@ const Pop = props => {
   const onRemoveLink = () => {
     const esWithoutLink = removeLink({ editorState });
     onChange(esWithoutLink);
-    onClose();
+    resetAndClose();
   };
 
   const onEditClick = () => {
@@ -36,10 +36,11 @@ const Pop = props => {
   const onSaveClick = () => {
     const linkValue = values.newLink;
     const linkTitle = title;
-    insertLink({ editorState, linkValue, linkTitle });
-    onClose();
+    const newEditorState = insertLink({ editorState, linkValue, linkTitle });
+    onChange(newEditorState);
+    resetAndClose();
   };
-  const onCancelClick = () => {
+  const resetAndClose = () => {
     onClose();
     setValues({ ...values, newLink: link, editMode: false });
   };
@@ -54,7 +55,7 @@ const Pop = props => {
       anchorReference="anchorPosition"
       anchorPosition={{ top: topPos, left }}
       open={popoverOpen}
-      onClose={onClose}
+      onClose={resetAndClose}
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "center"
@@ -99,7 +100,7 @@ const Pop = props => {
               <IconButton onClick={onSaveClick}>
                 <Icon>save</Icon>
               </IconButton>
-              <IconButton onClick={onCancelClick}>
+              <IconButton onClick={resetAndClose}>
                 <Icon>cancel</Icon>
               </IconButton>
             </Grid>
