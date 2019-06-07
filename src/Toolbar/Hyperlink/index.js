@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from "@material-ui/core/Tooltip";
 import { insertLink } from "./hyperlinkUtils";
 
 const Hyperlink = ({ editorState, onChange }) => {
@@ -53,13 +54,15 @@ const Hyperlink = ({ editorState, onChange }) => {
 
   return (
     <React.Fragment>
-      <IconButton
-        aria-owns={anchorEl ? "simple-menu" : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <Icon>{"insert_link"}</Icon>
-      </IconButton>
+      <Tooltip title="Insert link...(⌘K)" placement="top">
+        <IconButton
+          aria-owns={anchorEl ? "simple-menu" : undefined}
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <Icon>{"insert_link"}</Icon>
+        </IconButton>
+      </Tooltip>
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
