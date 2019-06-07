@@ -5,6 +5,7 @@ import decorator from "../Decorators";
 import Toolbar from "../Toolbar";
 import Pop from "../Popover";
 import { getPosition, getSelected } from "../Utils";
+import { styleMap } from "../Constants/Toolbar";
 
 const MyEditor = props => {
   const [initialized, setInitialized] = useState(false);
@@ -66,6 +67,7 @@ const MyEditor = props => {
             editorState={editorState}
             onChange={onChange}
             ref={myEditorRef}
+            customStyleMap={styleMap}
           />
         </div>
 

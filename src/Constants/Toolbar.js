@@ -15,3 +15,44 @@ export const blockStyles = [
     hint: "Unordered list (⌘⇧8)"
   }
 ];
+
+export const fontSizes = [
+  {
+    size: "12",
+    name: "FONTSIZE-12"
+  },
+  {
+    size: "14",
+    name: "FONTSIZE-14"
+  },
+  {
+    size: "16",
+    name: "FONTSIZE-16"
+  },
+  {
+    size: "18",
+    name: "FONTSIZE-18"
+  },
+  {
+    size: "20",
+    name: "FONTSIZE-20"
+  }
+];
+
+export const styleMap = {
+  "FONTSIZE-12": {
+    fontSize: "12px"
+  },
+  "FONTSIZE-14": {
+    fontSize: "14px"
+  },
+  "FONTSIZE-16": {
+    fontSize: "16px"
+  },
+  "FONTSIZE-18": {
+    fontSize: "18px"
+  },
+  "FONTSIZE-20": {
+    fontSize: "20px"
+  }
+};
