@@ -1,9 +1,5 @@
 import { EditorState, Modifier, RichUtils } from "draft-js";
-import {
-  getEntityRange,
-  getSelectionEntity,
-  getSelectionText
-} from "draftjs-utils";
+import { getEntityRange, getSelectionEntity } from "draftjs-utils";
 
 export const getSelection = ({ editorState, currentEntity, selection }) => {
   const entityRange = getEntityRange(editorState, currentEntity);
@@ -107,14 +103,18 @@ export const removeLink = ({ editorState }) => {
   }
 };
 
-export const getLink = ({ editorState }) => {
+export const getLinkDetails = ({ editorState }) => {
   const currentEntity = getSelectionEntity(editorState);
   const contentState = editorState.getCurrentContent();
+  const entityRange = getEntityRange(editorState, currentEntity);
   if (
     currentEntity &&
     contentState.getEntity(currentEntity).get("type") === "LINK"
   ) {
-    return contentState.getEntity(currentEntity).get("data").link;
+    return {
+      link: contentState.getEntity(currentEntity).get("data").link,
+      title: entityRange.text
+    };
   }
-  return null;
+  return {};
 };
