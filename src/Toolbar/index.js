@@ -8,12 +8,15 @@ import FontStyles from "./FontStyles/index.js";
 import BlockStyles from "./BlockStyles/index.js";
 import Hyperlink from "./Hyperlink/index.js";
 
-const MyToolbar = ({ onChange, editorState }) => {
+const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
   return (
     <AppBar position="static" color="default">
       <Toolbar style={{ background: "lightblue", minHeight: "30px" }}>
         <ToolbarGroup>
-          <FontSize onChange={onChange} editorState={editorState} />
+          <FontSize
+            editorState={editorState}
+            onDropdownChange={onDropdownChange}
+          />
           <ToolbarSeparator style={{ height: "25px" }} />
           <FontStyles onChange={onChange} editorState={editorState} />
           <ToolbarSeparator style={{ height: "25px" }} />

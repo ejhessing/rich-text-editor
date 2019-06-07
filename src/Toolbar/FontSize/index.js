@@ -7,7 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import { fontSizes } from "../../Constants/Toolbar";
 import { addFont } from "./fontsizeUtils";
 
-const FontSize = ({ editorState, onChange }) => {
+const FontSize = ({ editorState, onDropdownChange }) => {
   const [values, setValues] = useState({
     fontSize: "FONTSIZE-12"
   });
@@ -19,7 +19,7 @@ const FontSize = ({ editorState, onChange }) => {
       [name]: value
     }));
     const newEditorState = addFont({ editorState, value });
-    onChange(newEditorState);
+    onDropdownChange(newEditorState);
   };
 
   return (

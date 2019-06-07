@@ -50,6 +50,13 @@ const MyEditor = props => {
     myEditorRef.current.focus();
   };
 
+  const onDropdownChange = editorState => {
+    editorFocus();
+    setTimeout(() => {
+      onChange(editorState);
+    }, 0);
+  };
+
   return (
     <div
       style={{
@@ -58,7 +65,11 @@ const MyEditor = props => {
       }}
     >
       <Container maxWidth="lg">
-        <Toolbar onChange={onChange} editorState={editorState} />
+        <Toolbar
+          onChange={onChange}
+          editorState={editorState}
+          onDropdownChange={onDropdownChange}
+        />
         <div
           onClick={editorFocus}
           style={{ background: "white", minHeight: "250px", padding: "25px" }}
