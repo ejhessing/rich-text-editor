@@ -3,7 +3,8 @@ export const fontStyles = [
   { type: "ITALIC", icon: "format_italic", hint: "Italic (⌘I)" },
   { type: "UNDERLINE", icon: "format_underline", hint: "Underline (⌘U)" }
 ];
-export const blockStyles = [
+
+export const listStyles = [
   {
     type: "ordered-list-item",
     icon: "format_list_bulleted",
@@ -13,6 +14,29 @@ export const blockStyles = [
     type: "unordered-list-item",
     icon: "format_list_numbered",
     hint: "Unordered list (⌘⇧8)"
+  }
+];
+
+export const textAlignment = [
+  {
+    type: "LEFT-ALIGN",
+    icon: "format_align_left",
+    hint: "Left align (⌘+Shift+L)"
+  },
+  {
+    type: "CENTER-ALIGN",
+    icon: "format_align_center",
+    hint: "Center align (⌘+Shift+E)"
+  },
+  {
+    type: "RIGHT-ALIGN",
+    icon: "format_align_right",
+    hint: "Right align (⌘+Shift+R)"
+  },
+  {
+    type: "JUSTIFY-ALIGN",
+    icon: "format_align_justify",
+    hint: "Justify (⌘+Shift+J)"
   }
 ];
 
@@ -54,5 +78,20 @@ export const styleMap = {
   },
   "FONTSIZE-20": {
     fontSize: "20px"
+  }
+};
+
+export const blockMap = type => {
+  switch (type) {
+    case "LEFT-ALIGN":
+      return "leftAlign";
+    case "RIGHT-ALIGN":
+      return "rightAlign";
+    case "CENTER-ALIGN":
+      return "centerAlign";
+    case "JUSTIFY-ALIGN":
+      return "justifyAlign";
+    default:
+      return "";
   }
 };

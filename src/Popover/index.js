@@ -61,13 +61,17 @@ const Pop = props => {
         horizontal: "center"
       }}
     >
-      <div style={{ maxWidth: "300px", minWidth: "300px" }}>
+      <div style={{ width: "300px" }}>
         <Grid container alignItems="center">
           <Grid item xs={8}>
             {link && !values.editMode && (
               <React.Fragment>
                 <Icon
-                  style={{ display: "inline-flex", verticalAlign: "middle" }}
+                  style={{
+                    display: "inline-flex",
+                    verticalAlign: "middle",
+                    padding: "5px"
+                  }}
                 >
                   web
                 </Icon>
@@ -75,7 +79,7 @@ const Pop = props => {
                   href={link}
                   rel="noopener noreferrer"
                   target="_blank"
-                  style={{ padding: "5px" }}
+                  style={{ paddingLeft: "10px" }}
                   class="align-middle"
                 >
                   {link}

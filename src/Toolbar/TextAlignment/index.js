@@ -1,20 +1,19 @@
 import React from "react";
 import { RichUtils } from "draft-js";
-import ToolbarIcon from "../ToolbarIcon";
-import { blockStyles } from "../../Constants/Toolbar";
 
-const BlockStyles = ({ editorState, onChange }) => {
+import ToolbarIcon from "../ToolbarIcon";
+import { textAlignment } from "../../Constants/Toolbar";
+import { getBlockType } from "../../Utils/blockType";
+import "./style.css";
+
+const TextAlignment = ({ editorState, onChange }) => {
   const onClick = type => {
     onChange(RichUtils.toggleBlockType(editorState, type));
   };
 
-  const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
+  const blockType = getBlockType({ editorState });
 
-  const blockIcons = blockStyles.map(({ type, icon, hint }) => {
+  const textAlignments = textAlignment.map(({ type, icon, hint }) => {
     const isActive = type === blockType;
 
     return (
@@ -29,7 +28,7 @@ const BlockStyles = ({ editorState, onChange }) => {
     );
   });
 
-  return <React.Fragment>{blockIcons}</React.Fragment>;
+  return <React.Fragment>{textAlignments}</React.Fragment>;
 };
 
-export default BlockStyles;
+export default TextAlignment;

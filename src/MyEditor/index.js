@@ -5,7 +5,7 @@ import decorator from "../Decorators";
 import Toolbar from "../Toolbar";
 import Pop from "../Popover";
 import { getPosition, getSelected } from "../Utils";
-import { styleMap } from "../Constants/Toolbar";
+import { styleMap, blockMap } from "../Constants/Toolbar";
 
 const MyEditor = props => {
   const [initialized, setInitialized] = useState(false);
@@ -50,6 +50,11 @@ const MyEditor = props => {
     myEditorRef.current.focus();
   };
 
+  const blockStyleFn = contentBlock => {
+    const type = contentBlock.getType();
+    return blockMap(type);
+  };
+
   const onDropdownChange = editorState => {
     editorFocus();
     setTimeout(() => {
@@ -78,6 +83,7 @@ const MyEditor = props => {
             editorState={editorState}
             onChange={onChange}
             ref={myEditorRef}
+            blockStyleFn={blockStyleFn}
             customStyleMap={styleMap}
           />
         </div>
