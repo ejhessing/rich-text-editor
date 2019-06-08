@@ -3,6 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import ToolbarGroup from "@material-ui/core/Toolbar";
 import ToolbarSeparator from "@material-ui/core/Toolbar";
+import FontFamily from "./FontFamily/index.js";
 import FontSize from "./FontSize/index.js";
 import FontStyles from "./FontStyles/index.js";
 import ListStyles from "./ListStyles/index.js";
@@ -14,6 +15,10 @@ const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
     <AppBar position="static" color="default">
       <Toolbar style={{ background: "lightblue", minHeight: "30px" }}>
         <ToolbarGroup>
+          <FontFamily
+            editorState={editorState}
+            onDropdownChange={onDropdownChange}
+          />
           <FontSize
             editorState={editorState}
             onDropdownChange={onDropdownChange}

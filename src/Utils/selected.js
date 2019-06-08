@@ -1,3 +1,5 @@
+import { EditorState } from "draft-js";
+
 export const getSelected = () => {
   if (window.getSelection) {
     return window.getSelection();
@@ -7,3 +9,6 @@ export const getSelected = () => {
     return document.selection.createRange().text;
   }
 };
+
+export const forceSelection = ({ editorState }) =>
+  EditorState.forceSelection(editorState, editorState.getSelection());

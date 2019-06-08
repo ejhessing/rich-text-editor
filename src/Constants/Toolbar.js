@@ -63,6 +63,29 @@ export const fontSizes = [
   }
 ];
 
+export const fontFamily = [
+  {
+    name: "FONT-ARIAL",
+    type: "Arial"
+  },
+  {
+    name: "FONT-TIMES-NEW-ROMAN",
+    type: "Times New Roman"
+  },
+  {
+    name: "FONT-COMIC-SANS-MS",
+    type: "Comic Sans MS"
+  },
+  {
+    name: "FONT-COURIER-NEW",
+    type: "Courier New"
+  },
+  {
+    name: "FONT-IMPACT",
+    type: "Impact"
+  }
+];
+
 export const styleMap = {
   "FONTSIZE-12": {
     fontSize: "12px"
@@ -78,6 +101,21 @@ export const styleMap = {
   },
   "FONTSIZE-20": {
     fontSize: "20px"
+  },
+  "FONT-ARIAL": {
+    fontFamily: "Arial"
+  },
+  "FONT-TIMES-NEW-ROMAN": {
+    fontFamily: "Times New Roman"
+  },
+  "FONT-COMIC-SANS-MS": {
+    fontFamily: "Comic Sans MS"
+  },
+  "FONT-COURIER-NEW": {
+    fontFamily: "Courier New"
+  },
+  "FONT-IMPACT": {
+    fontFamily: "Impact"
   }
 };
 

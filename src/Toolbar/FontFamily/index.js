@@ -4,13 +4,13 @@ import Select from "@material-ui/core/Select";
 import Tooltip from "@material-ui/core/Tooltip";
 import FormControl from "@material-ui/core/FormControl";
 
-import { fontSizes } from "../../Constants/Toolbar";
-import { addFont } from "../../Utils/fonts.js";
+import { fontFamily } from "../../Constants/Toolbar";
+import { addFont } from "../../Utils/fonts";
 import { forceSelection } from "../../Utils/selected.js";
 
 const FontSize = ({ editorState, onDropdownChange }) => {
   const [values, setValues] = useState({
-    fontSize: "FONTSIZE-12"
+    fontFamily: "FONT-ARIAL"
   });
 
   const handleChange = event => {
@@ -19,7 +19,7 @@ const FontSize = ({ editorState, onDropdownChange }) => {
       ...oldValues,
       [name]: value
     }));
-    if (values.fontSize === value) {
+    if (values.fontFamily === value) {
       const newEditorState = forceSelection({ editorState });
       onDropdownChange(newEditorState);
     } else {
@@ -29,13 +29,17 @@ const FontSize = ({ editorState, onDropdownChange }) => {
   };
 
   return (
-    <Tooltip title="Font size" placement="top">
-      <FormControl style={{ minWidth: "60px", padding: "8px" }}>
-        <Select value={values.fontSize} onChange={handleChange} name="fontSize">
-          {fontSizes.map(({ name, size }) => {
+    <Tooltip title="Font family" placement="top">
+      <FormControl style={{ width: "120px", padding: "8px" }}>
+        <Select
+          value={values.fontFamily}
+          onChange={handleChange}
+          name="fontFamily"
+        >
+          {fontFamily.map(({ name, type }) => {
             return (
-              <MenuItem key={size} value={name}>
-                {size}
+              <MenuItem key={type} value={name}>
+                {type}
               </MenuItem>
             );
           })}
