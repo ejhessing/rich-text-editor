@@ -5,11 +5,7 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 
-import {
-  insertLink,
-  removeLink,
-  getLinkDetails
-} from "../Toolbar/Hyperlink/hyperlinkUtils";
+import { insertLink, removeLink, getLinkDetails } from "../Utils/hyperlink";
 
 const Pop = props => {
   const { popoverOpen, position, onClose, editorState, onChange } = props;
@@ -69,14 +65,22 @@ const Pop = props => {
         <Grid container alignItems="center">
           <Grid item xs={8}>
             {link && !values.editMode && (
-              <a
-                href={link}
-                rel="noopener noreferrer"
-                target="_blank"
-                style={{ padding: "5px" }}
-              >
-                {link}
-              </a>
+              <React.Fragment>
+                <Icon
+                  style={{ display: "inline-flex", verticalAlign: "middle" }}
+                >
+                  web
+                </Icon>
+                <a
+                  href={link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ padding: "5px" }}
+                  class="align-middle"
+                >
+                  {link}
+                </a>
+              </React.Fragment>
             )}
             {values.editMode && (
               <TextField

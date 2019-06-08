@@ -1,6 +1,6 @@
 import { EditorState, Modifier, RichUtils } from "draft-js";
 
-import { styleMap } from "../../Constants/Toolbar";
+import { styleMap } from "../Constants/Toolbar";
 
 export const addFont = ({ editorState, value }) => {
   const selection = editorState.getSelection();

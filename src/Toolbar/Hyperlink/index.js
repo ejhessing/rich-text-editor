@@ -7,7 +7,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Tooltip from "@material-ui/core/Tooltip";
-import { insertLink } from "./hyperlinkUtils";
+import { insertLink } from "../../Utils/hyperlink";
 
 const Hyperlink = ({ editorState, onChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
