@@ -7,12 +7,12 @@ export const fontStyles = [
 export const listStyles = [
   {
     type: "ordered-list-item",
-    icon: "format_list_bulleted",
+    icon: "format_list_numbered",
     hint: "Ordered list (⌘⇧7)"
   },
   {
     type: "unordered-list-item",
-    icon: "format_list_numbered",
+    icon: "format_list_bulleted",
     hint: "Unordered list (⌘⇧8)"
   }
 ];

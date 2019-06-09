@@ -8,6 +8,7 @@ import FontSize from "./FontSize/index.js";
 import FontStyles from "./FontStyles/index.js";
 import ListStyles from "./ListStyles/index.js";
 import Hyperlink from "./Hyperlink/index.js";
+import Images from "./Images/index.js";
 import TextAlignment from "./TextAlignment/index.js";
 
 const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
@@ -29,6 +30,7 @@ const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
           <ListStyles onChange={onChange} editorState={editorState} />
           <ToolbarSeparator style={{ height: "25px" }} />
           <Hyperlink onChange={onChange} editorState={editorState} />
+          <Images onChange={onChange} editorState={editorState} />
           <ToolbarSeparator style={{ height: "25px" }} />
           <TextAlignment onChange={onChange} editorState={editorState} />
         </ToolbarGroup>
