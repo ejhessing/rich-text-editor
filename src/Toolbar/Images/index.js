@@ -5,9 +5,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import Input from "@material-ui/core/Input";
 import Tooltip from "@material-ui/core/Tooltip";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import TextField from "@material-ui/core/TextField";
 import { insertImage } from "../../Utils/image";
 
 const Images = ({ editorState, onChange }) => {
@@ -77,7 +76,7 @@ const Images = ({ editorState, onChange }) => {
         onClose={handleClose}
       >
         <MenuItem>
-          <Input
+          <TextField
             label="Image url"
             placeholder="https://..."
             margin="normal"
@@ -86,25 +85,25 @@ const Images = ({ editorState, onChange }) => {
           />
         </MenuItem>
         <MenuItem>
-          <Input
+          <TextField
             label="Alt text"
             placeholder=""
             onChange={handleChange("altText")}
             onKeyDown={onInputKeyDown}
-            value={values.height}
+            value={values.altText}
             margin="normal"
           />
         </MenuItem>
         <MenuItem>
-          <Input
+          <TextField
             label="Height"
             placeholder="auto"
             onChange={handleChange("height")}
-            value={values.altText}
+            value={values.height}
             margin="normal"
             style={{ width: "80px", marginRight: "15px" }}
           />
-          <Input
+          <TextField
             label="Width"
             placeholder="auto"
             onChange={handleChange("width")}
