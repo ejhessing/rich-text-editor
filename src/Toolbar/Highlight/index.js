@@ -5,15 +5,15 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import { colors } from "../../Constants/Toolbar";
+import { highlights } from "../../Constants/Toolbar";
 import { addColor } from "../../Utils/colors.js";
 import { forceSelection } from "../../Utils/selected.js";
 
-// TODO: Remove color
-const ColorPicker = ({ editorState, onDropdownChange }) => {
+// TODO : Remove highlight
+const Highlight = ({ editorState, onDropdownChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [values, setValues] = React.useState({
-    color: "COLOR-BLACK"
+    highlight: ""
   });
 
   const handleClick = e => {
@@ -24,24 +24,25 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
     setAnchorEl(null);
   };
 
-  const updateColor = value => {
-    if (values.color === value) {
+  const updateHighlight = value => {
+    if (values.highlight === value) {
       const newEditorState = forceSelection({ editorState });
       onDropdownChange(newEditorState);
     } else {
       const newEditorState = addColor({ editorState, value });
       onDropdownChange(newEditorState);
-      setValues({ ...values, color: value });
+      setValues({ ...values, highlight: value });
     }
     handleClose();
   };
-  const colorDivs = colors.map(({ name, type }) => {
-    const isActive = values.color === name;
+
+  const highlightDivs = highlights.map(({ name, type }) => {
+    const isActive = values.highlight === name;
     const size = "25px";
     const shadow = isActive ? "0px 0px 0px 3px white inset" : "0px";
     return (
       <div
-        onClick={() => updateColor(name)}
+        onClick={() => updateHighlight(name)}
         key={type}
         style={{
           background: type,
@@ -62,7 +63,7 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
           aria-haspopup="true"
           onClick={handleClick}
         >
-          <Icon>{"format_color_text"}</Icon>
+          <Icon>{"border_color"}</Icon>
         </IconButton>
       </Tooltip>
       <Popover
@@ -87,11 +88,11 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
             paddingLeft: "4px"
           }}
         >
-          {colorDivs}
+          {highlightDivs}
         </div>
       </Popover>
     </React.Fragment>
   );
 };
 
-export default ColorPicker;
+export default Highlight;

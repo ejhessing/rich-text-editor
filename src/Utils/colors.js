@@ -7,8 +7,8 @@ export const addColor = ({ editorState, value }) => {
   const currentContent = editorState.getCurrentContent();
 
   const nextContentState = Object.keys(styleMap).reduce(
-    (contentState, font) =>
-      Modifier.removeInlineStyle(contentState, selection, font),
+    (contentState, color) =>
+      Modifier.removeInlineStyle(contentState, selection, color),
     currentContent
   );
 
@@ -22,7 +22,7 @@ export const addColor = ({ editorState, value }) => {
 
   if (selection.isCollapsed()) {
     nextEditorState = currentStyle.reduce(
-      (state, font) => RichUtils.toggleInlineStyle(state, font),
+      (state, color) => RichUtils.toggleInlineStyle(state, color),
       nextEditorState
     );
   }
@@ -33,4 +33,37 @@ export const addColor = ({ editorState, value }) => {
   );
 
   return RichUtils.toggleInlineStyle(nextEditorState, value);
+};
+
+export const removeColor = ({ editorState }) => {
+  const selection = editorState.getSelection();
+  const currentContent = editorState.getCurrentContent();
+
+  const nextContentState = Object.keys(styleMap).reduce(
+    (contentState, color) =>
+      Modifier.removeInlineStyle(contentState, selection, color),
+    currentContent
+  );
+
+  let nextEditorState = EditorState.push(
+    editorState,
+    nextContentState,
+    "change-inline-style"
+  );
+
+  // const currentStyle = editorState.getCurrentInlineStyle();
+
+  // if (selection.isCollapsed()) {
+  //   nextEditorState = currentStyle.reduce(
+  //     (state, color) => RichUtils.toggleInlineStyle(state, color),
+  //     nextEditorState
+  //   );
+  // }
+
+  nextEditorState = EditorState.forceSelection(
+    nextEditorState,
+    nextEditorState.getSelection()
+  );
+
+  return nextEditorState;
 };

@@ -131,6 +131,49 @@ export const colors = [
   }
 ];
 
+export const highlights = [
+  {
+    name: "BACKGROUND-WHITE",
+    type: "white"
+  },
+  {
+    name: "BACKGROUND-RED",
+    type: "red"
+  },
+  {
+    name: "BACKGROUND-BLUE",
+    type: "blue"
+  },
+  {
+    name: "BACKGROUND-PURPLE",
+    type: "purple"
+  },
+  {
+    name: "BACKGROUND-PINK",
+    type: "pink"
+  },
+  {
+    name: "BACKGROUND-YELLOW",
+    type: "yellow"
+  },
+  {
+    name: "BACKGROUND-GOLD",
+    type: "gold"
+  },
+  {
+    name: "BACKGROUND-ORANGE",
+    type: "orange"
+  },
+  {
+    name: "BACKGROUND-TEAL",
+    type: "teal"
+  },
+  {
+    name: "BACKGROUND-GREEN",
+    type: "green"
+  }
+];
+
 export const styleMap = {
   "FONTSIZE-12": {
     fontSize: "12px"
@@ -188,6 +231,33 @@ export const styleMap = {
   },
   "COLOR-TEAL": {
     color: "teal"
+  },
+  "BACKGROUND-WHITE": {
+    backgroundColor: "white"
+  },
+  "BACKGROUND-RED": {
+    backgroundColor: "red"
+  },
+  "BACKGROUND-BLUE": {
+    backgroundColor: "blue"
+  },
+  "BACKGROUND-GREEN": {
+    backgroundColor: "green"
+  },
+  "BACKGROUND-YELLOW": {
+    backgroundColor: "yellow"
+  },
+  "BACKGROUND-PURPLE": {
+    backgroundColor: "purple"
+  },
+  "BACKGROUND-ORANGE": {
+    backgroundColor: "orange"
+  },
+  "BACKGROUND-PINK": {
+    backgroundColor: "pink"
+  },
+  "BACKGROUND-TEAL": {
+    backgroundColor: "teal"
   }
 };
 
