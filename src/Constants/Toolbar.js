@@ -88,6 +88,49 @@ export const fontFamily = [
   }
 ];
 
+export const colors = [
+  {
+    name: "COLOR-BLACK",
+    type: "black"
+  },
+  {
+    name: "COLOR-RED",
+    type: "red"
+  },
+  {
+    name: "COLOR-BLUE",
+    type: "blue"
+  },
+  {
+    name: "COLOR-PURPLE",
+    type: "purple"
+  },
+  {
+    name: "COLOR-PINK",
+    type: "pink"
+  },
+  {
+    name: "COLOR-YELLOW",
+    type: "yellow"
+  },
+  {
+    name: "COLOR-GOLD",
+    type: "gold"
+  },
+  {
+    name: "COLOR-ORANGE",
+    type: "orange"
+  },
+  {
+    name: "COLOR-TEAL",
+    type: "teal"
+  },
+  {
+    name: "COLOR-GREEN",
+    type: "green"
+  }
+];
+
 export const styleMap = {
   "FONTSIZE-12": {
     fontSize: "12px"
@@ -118,6 +161,33 @@ export const styleMap = {
   },
   "FONT-IMPACT": {
     fontFamily: "Impact"
+  },
+  "COLOR-BLACK": {
+    color: "black"
+  },
+  "COLOR-RED": {
+    color: "red"
+  },
+  "COLOR-BLUE": {
+    color: "blue"
+  },
+  "COLOR-GREEN": {
+    color: "green"
+  },
+  "COLOR-YELLOW": {
+    color: "yellow"
+  },
+  "COLOR-PURPLE": {
+    color: "purple"
+  },
+  "COLOR-ORANGE": {
+    color: "orange"
+  },
+  "COLOR-PINK": {
+    color: "pink"
+  },
+  "COLOR-TEAL": {
+    color: "teal"
   }
 };
 

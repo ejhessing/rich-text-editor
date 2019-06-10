@@ -10,6 +10,7 @@ import ListStyles from "./ListStyles/index.js";
 import Hyperlink from "./Hyperlink/index.js";
 import Images from "./Images/index.js";
 import TextAlignment from "./TextAlignment/index.js";
+import ColorPicker from "./ColorPicker/index.js";
 
 const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
   return (
@@ -26,6 +27,10 @@ const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
           />
           <ToolbarSeparator style={{ height: "25px" }} />
           <FontStyles onChange={onChange} editorState={editorState} />
+          <ColorPicker
+            editorState={editorState}
+            onDropdownChange={onDropdownChange}
+          />
           <ToolbarSeparator style={{ height: "25px" }} />
           <ListStyles onChange={onChange} editorState={editorState} />
           <ToolbarSeparator style={{ height: "25px" }} />
