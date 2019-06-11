@@ -5,7 +5,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import FormControl from "@material-ui/core/FormControl";
 
 import { fontSizes } from "../../Constants/Toolbar";
-import { addFont } from "../../Utils/fonts.js";
+import { addFontSizes } from "../../Utils/fonts.js";
 import { forceSelection } from "../../Utils/selected.js";
 
 const FontSize = ({ editorState, onDropdownChange }) => {
@@ -23,7 +23,7 @@ const FontSize = ({ editorState, onDropdownChange }) => {
       const newEditorState = forceSelection({ editorState });
       onDropdownChange(newEditorState);
     } else {
-      const newEditorState = addFont({ editorState, value });
+      const newEditorState = addFontSizes({ editorState, value });
       onDropdownChange(newEditorState);
     }
   };

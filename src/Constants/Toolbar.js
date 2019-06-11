@@ -174,7 +174,7 @@ export const highlights = [
   }
 ];
 
-export const styleMap = {
+export const styleFontSizes = {
   "FONTSIZE-12": {
     fontSize: "12px"
   },
@@ -189,7 +189,10 @@ export const styleMap = {
   },
   "FONTSIZE-30": {
     fontSize: "30px"
-  },
+  }
+};
+
+export const styleFontTypes = {
   "FONT-ARIAL": {
     fontFamily: "Arial"
   },
@@ -204,7 +207,10 @@ export const styleMap = {
   },
   "FONT-IMPACT": {
     fontFamily: "Impact"
-  },
+  }
+};
+
+export const styleTextColor = {
   "COLOR-BLACK": {
     color: "black"
   },
@@ -231,7 +237,10 @@ export const styleMap = {
   },
   "COLOR-TEAL": {
     color: "teal"
-  },
+  }
+};
+
+export const styleHighlightColor = {
   "BACKGROUND-WHITE": {
     backgroundColor: "white"
   },
@@ -259,6 +268,13 @@ export const styleMap = {
   "BACKGROUND-TEAL": {
     backgroundColor: "teal"
   }
+};
+
+export const styleMap = {
+  ...styleFontSizes,
+  ...styleFontTypes,
+  ...styleHighlightColor,
+  ...styleTextColor
 };
 
 export const blockMap = type => {
