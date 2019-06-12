@@ -23,7 +23,10 @@ export const addFontSizes = ({ editorState, value }) => {
 
   if (selection.isCollapsed()) {
     nextEditorState = currentStyle.reduce((state, font) => {
-      return RichUtils.toggleInlineStyle(state, font);
+      if (styleFontSizes[font]) {
+        return RichUtils.toggleInlineStyle(state, font);
+      }
+      return state;
     }, nextEditorState);
   }
 

@@ -14,6 +14,7 @@ const FontSize = ({ editorState, onDropdownChange }) => {
   });
 
   const handleChange = event => {
+    event.preventDefault();
     const { name, value } = event.target;
     setValues(oldValues => ({
       ...oldValues,
@@ -34,7 +35,11 @@ const FontSize = ({ editorState, onDropdownChange }) => {
         <Select value={values.fontSize} onChange={handleChange} name="fontSize">
           {fontSizes.map(({ name, size }) => {
             return (
-              <MenuItem key={size} value={name}>
+              <MenuItem
+                key={size}
+                value={name}
+                onMouseDown={e => e.preventDefault()}
+              >
                 {size}
               </MenuItem>
             );
