@@ -1,12 +1,12 @@
 import { EditorState, Modifier, RichUtils } from "draft-js";
 
-import { styleMap } from "../Constants/Toolbar";
+import { styleTextColor, styleHighlightColor } from "../Constants/Toolbar";
 
 export const addColor = ({ editorState, value }) => {
   const selection = editorState.getSelection();
   const currentContent = editorState.getCurrentContent();
 
-  const nextContentState = Object.keys(styleMap).reduce(
+  const nextContentState = Object.keys(styleTextColor).reduce(
     (contentState, color) =>
       Modifier.removeInlineStyle(contentState, selection, color),
     currentContent
@@ -21,10 +21,12 @@ export const addColor = ({ editorState, value }) => {
   const currentStyle = editorState.getCurrentInlineStyle();
 
   if (selection.isCollapsed()) {
-    nextEditorState = currentStyle.reduce(
-      (state, color) => RichUtils.toggleInlineStyle(state, color),
-      nextEditorState
-    );
+    nextEditorState = currentStyle.reduce((state, color) => {
+      if (styleTextColor[color]) {
+        return RichUtils.toggleInlineStyle(state, color);
+      }
+      return state;
+    }, nextEditorState);
   }
 
   nextEditorState = EditorState.forceSelection(
@@ -35,11 +37,11 @@ export const addColor = ({ editorState, value }) => {
   return RichUtils.toggleInlineStyle(nextEditorState, value);
 };
 
-export const removeColor = ({ editorState }) => {
+export const addHighlightColor = ({ editorState, value }) => {
   const selection = editorState.getSelection();
   const currentContent = editorState.getCurrentContent();
 
-  const nextContentState = Object.keys(styleMap).reduce(
+  const nextContentState = Object.keys(styleHighlightColor).reduce(
     (contentState, color) =>
       Modifier.removeInlineStyle(contentState, selection, color),
     currentContent
@@ -51,19 +53,54 @@ export const removeColor = ({ editorState }) => {
     "change-inline-style"
   );
 
-  // const currentStyle = editorState.getCurrentInlineStyle();
+  const currentStyle = editorState.getCurrentInlineStyle();
 
-  // if (selection.isCollapsed()) {
-  //   nextEditorState = currentStyle.reduce(
-  //     (state, color) => RichUtils.toggleInlineStyle(state, color),
-  //     nextEditorState
-  //   );
-  // }
+  if (selection.isCollapsed()) {
+    nextEditorState = currentStyle.reduce((state, color) => {
+      if (styleHighlightColor[color]) {
+        return RichUtils.toggleInlineStyle(state, color);
+      }
+      return state;
+    }, nextEditorState);
+  }
 
   nextEditorState = EditorState.forceSelection(
     nextEditorState,
     nextEditorState.getSelection()
   );
 
-  return nextEditorState;
+  return RichUtils.toggleInlineStyle(nextEditorState, value);
 };
+
+// export const removeColor = ({ editorState }) => {
+//   const selection = editorState.getSelection();
+//   const currentContent = editorState.getCurrentContent();
+
+//   const nextContentState = Object.keys(styleMap).reduce(
+//     (contentState, color) =>
+//       Modifier.removeInlineStyle(contentState, selection, color),
+//     currentContent
+//   );
+
+//   let nextEditorState = EditorState.push(
+//     editorState,
+//     nextContentState,
+//     "change-inline-style"
+//   );
+
+//   // const currentStyle = editorState.getCurrentInlineStyle();
+
+//   // if (selection.isCollapsed()) {
+//   //   nextEditorState = currentStyle.reduce(
+//   //     (state, color) => RichUtils.toggleInlineStyle(state, color),
+//   //     nextEditorState
+//   //   );
+//   // }
+
+//   nextEditorState = EditorState.forceSelection(
+//     nextEditorState,
+//     nextEditorState.getSelection()
+//   );
+
+//   return nextEditorState;
+// };

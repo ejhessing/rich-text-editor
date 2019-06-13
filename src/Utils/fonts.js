@@ -58,10 +58,12 @@ export const addFontTypes = ({ editorState, value }) => {
   const currentStyle = editorState.getCurrentInlineStyle();
 
   if (selection.isCollapsed()) {
-    nextEditorState = currentStyle.reduce(
-      (state, font) => RichUtils.toggleInlineStyle(state, font),
-      nextEditorState
-    );
+    nextEditorState = currentStyle.reduce((state, font) => {
+      if (styleFontTypes[font]) {
+        return RichUtils.toggleInlineStyle(state, font);
+      }
+      return state;
+    }, nextEditorState);
   }
 
   nextEditorState = EditorState.forceSelection(

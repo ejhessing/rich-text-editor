@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 
 import { highlights } from "../../Constants/Toolbar";
-import { addColor } from "../../Utils/colors.js";
+import { addHighlightColor } from "../../Utils/colors.js";
 import { forceSelection } from "../../Utils/selected.js";
 
 // TODO : Remove highlight
@@ -29,7 +29,7 @@ const Highlight = ({ editorState, onDropdownChange }) => {
       const newEditorState = forceSelection({ editorState });
       onDropdownChange(newEditorState);
     } else {
-      const newEditorState = addColor({ editorState, value });
+      const newEditorState = addHighlightColor({ editorState, value });
       onDropdownChange(newEditorState);
       setValues({ ...values, highlight: value });
     }
