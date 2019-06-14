@@ -39,7 +39,7 @@ const FontSize = ({ editorState, onDropdownChange }) => {
           {fontFamily.map(({ name, type }) => {
             return (
               <MenuItem key={type} value={name}>
-                {type}
+                <span style={{ fontFamily: type }}>{type}</span>
               </MenuItem>
             );
           })}
