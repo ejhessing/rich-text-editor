@@ -13,7 +13,7 @@ import { forceSelection } from "../../Utils/selected.js";
 const ColorPicker = ({ editorState, onDropdownChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [values, setValues] = React.useState({
-    color: "COLOR-BLACK"
+    color: ""
   });
 
   const handleClick = e => {
@@ -56,7 +56,7 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
 
   return (
     <React.Fragment>
-      <Tooltip title="Image" placement="top">
+      <Tooltip title="Text color" placement="top">
         <IconButton
           aria-owns={anchorEl ? "simple-menu" : undefined}
           aria-haspopup="true"

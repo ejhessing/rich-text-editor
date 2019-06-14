@@ -57,7 +57,7 @@ const Highlight = ({ editorState, onDropdownChange }) => {
 
   return (
     <React.Fragment>
-      <Tooltip title="Image" placement="top">
+      <Tooltip title="Highlight color" placement="top">
         <IconButton
           aria-owns={anchorEl ? "simple-menu" : undefined}
           aria-haspopup="true"
