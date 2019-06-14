@@ -27,17 +27,19 @@ export const insertLink = ({ editorState, linkValue, linkTitle }) => {
     ? getSelection({ editorState, currentEntity, selection: currentSelection })
     : currentSelection;
 
+  const title = linkTitle || linkValue;
+
   const contentStateWithEntity = contentState.createEntity(
     "LINK",
     "MUTABLE", //Immutable?
-    { link: linkValue }
+    { link: linkValue, title }
   );
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
   const newContentState = Modifier.replaceText(
     contentState,
     selection,
-    linkTitle,
+    title,
     editorState.getCurrentInlineStyle(),
     entityKey
   );

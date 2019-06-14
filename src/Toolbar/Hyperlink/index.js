@@ -1,5 +1,5 @@
 import React from "react";
-
+import { isEmpty } from "lodash";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
@@ -89,7 +89,12 @@ const Hyperlink = ({ editorState, onChange }) => {
           />
         </MenuItem>
         <MenuItem>
-          <Button variant="contained" color="primary" onClick={onAddLink}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={onAddLink}
+            disabled={isEmpty(values.linkValue)}
+          >
             Save
           </Button>
           <Button
