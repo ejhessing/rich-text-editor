@@ -80,7 +80,7 @@ const Pop = props => {
                   rel="noopener noreferrer"
                   target="_blank"
                   style={{ paddingLeft: "10px" }}
-                  class="align-middle"
+                  className="align-middle"
                 >
                   {link}
                 </a>
