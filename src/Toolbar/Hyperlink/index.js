@@ -3,10 +3,11 @@ import { isEmpty } from "lodash";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Tooltip from "@material-ui/core/Tooltip";
+import Popover from "@material-ui/core/Popover";
+import Grid from "@material-ui/core/Grid";
+
 import { insertLink } from "../../Utils/hyperlink";
 
 const Hyperlink = ({ editorState, onChange }) => {
@@ -63,49 +64,63 @@ const Hyperlink = ({ editorState, onChange }) => {
           <Icon>{"insert_link"}</Icon>
         </IconButton>
       </Tooltip>
-      <Menu
-        id="simple-menu"
+
+      <Popover
+        id={"popover-color"}
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center"
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center"
+        }}
       >
-        <MenuItem>
-          <TextField
-            label="Link title"
-            placeholder="Title"
-            margin="normal"
-            value={values.linkTitle}
-            onChange={handleChange("linkTitle")}
-          />
-        </MenuItem>
-        <MenuItem>
-          <TextField
-            label="Link"
-            placeholder="https://"
-            onChange={handleChange("linkValue")}
-            onKeyDown={onInputKeyDown}
-            value={values.linkValue}
-            margin="normal"
-          />
-        </MenuItem>
-        <MenuItem>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={onAddLink}
-            disabled={isEmpty(values.linkValue)}
+        <React.Fragment>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
           >
-            Save
-          </Button>
-          <Button
-            variant="contained"
-            style={{ margin: "20px" }}
-            onClick={handleClose}
-          >
-            Cancel
-          </Button>
-        </MenuItem>
-      </Menu>
+            <Grid item>
+              <TextField
+                label="Link title"
+                placeholder="Title"
+                margin="normal"
+                value={values.linkTitle}
+                onChange={handleChange("linkTitle")}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                label="Link"
+                placeholder="https://"
+                onChange={handleChange("linkValue")}
+                onKeyDown={onInputKeyDown}
+                value={values.linkValue}
+                margin="normal"
+              />
+            </Grid>
+          </Grid>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={onAddLink}
+              disabled={isEmpty(values.linkValue)}
+            >
+              Save
+            </Button>
+            <Button variant="contained" onClick={handleClose}>
+              Cancel
+            </Button>
+          </Grid>
+        </React.Fragment>
+      </Popover>
     </React.Fragment>
   );
 };

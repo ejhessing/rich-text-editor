@@ -3,10 +3,11 @@ import React from "react";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import Tooltip from "@material-ui/core/Tooltip";
 import TextField from "@material-ui/core/TextField";
+import Popover from "@material-ui/core/Popover";
+import Grid from "@material-ui/core/Grid";
+
 import { insertImage } from "../../Utils/image";
 
 const Images = ({ editorState, onChange }) => {
@@ -69,62 +70,75 @@ const Images = ({ editorState, onChange }) => {
           <Icon>{"image"}</Icon>
         </IconButton>
       </Tooltip>
-      <Menu
-        id="simple-menu"
+      <Popover
+        id={"popover-color"}
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center"
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center"
+        }}
       >
-        <MenuItem>
-          <TextField
-            label="Image url"
-            placeholder="https://..."
-            margin="normal"
-            value={values.src}
-            onChange={handleChange("src")}
-          />
-        </MenuItem>
-        <MenuItem>
-          <TextField
-            label="Alt text"
-            placeholder=""
-            onChange={handleChange("altText")}
-            onKeyDown={onInputKeyDown}
-            value={values.altText}
-            margin="normal"
-          />
-        </MenuItem>
-        <MenuItem>
-          <TextField
-            label="Height"
-            placeholder="auto"
-            onChange={handleChange("height")}
-            value={values.height}
-            margin="normal"
-            style={{ width: "80px", marginRight: "15px" }}
-          />
-          <TextField
-            label="Width"
-            placeholder="auto"
-            onChange={handleChange("width")}
-            value={values.width}
-            margin="normal"
-            style={{ width: "80px" }}
-          />
-        </MenuItem>
-        <MenuItem>
-          <Button variant="contained" color="primary" onClick={onAddImage}>
-            Save
-          </Button>
-          <Button
-            variant="contained"
-            style={{ margin: "20px" }}
-            onClick={handleClose}
+        <React.Fragment>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
           >
-            Cancel
-          </Button>
-        </MenuItem>
-      </Menu>
+            <Grid item>
+              <TextField
+                label="Image url"
+                placeholder="https://..."
+                margin="normal"
+                value={values.src}
+                onChange={handleChange("src")}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                label="Alt text"
+                placeholder=""
+                onChange={handleChange("altText")}
+                onKeyDown={onInputKeyDown}
+                value={values.altText}
+                margin="normal"
+              />
+            </Grid>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Height"
+              placeholder="auto"
+              onChange={handleChange("height")}
+              value={values.height}
+              margin="normal"
+              style={{ width: "80px", marginRight: "15px" }}
+            />
+            <TextField
+              label="Width"
+              placeholder="auto"
+              onChange={handleChange("width")}
+              value={values.width}
+              margin="normal"
+              style={{ width: "80px" }}
+            />
+          </Grid>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Button variant="contained" color="primary" onClick={onAddImage}>
+              Save
+            </Button>
+            <Button variant="contained" onClick={handleClose}>
+              Cancel
+            </Button>
+          </Grid>
+        </React.Fragment>
+      </Popover>
     </React.Fragment>
   );
 };
