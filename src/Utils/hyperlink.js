@@ -92,16 +92,8 @@ export const removeLink = ({ editorState }) => {
       null
     );
 
-    // Get link text and add it to selection
-    const esWithoutSelection = EditorState.acceptSelection(
-      esWithoutLink,
-      esWithoutLink.getSelection().merge({
-        anchorOffset: currentSelection.get("anchorOffset") + 0,
-        focusOffset: currentSelection.get("anchorOffset") + 0
-      })
-    );
-
-    return esWithoutSelection;
+    // TODO: moce cursor to the end of the word
+    return esWithoutLink;
   }
 };
 

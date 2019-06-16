@@ -1,5 +1,6 @@
 import React from "react";
 import { isEmpty } from "lodash";
+
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
@@ -9,6 +10,7 @@ import Popover from "@material-ui/core/Popover";
 import Grid from "@material-ui/core/Grid";
 
 import { insertLink } from "../../Utils/hyperlink";
+import { getSelectedText } from "../../Utils/selected";
 
 const Hyperlink = ({ editorState, onChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,6 +32,14 @@ const Hyperlink = ({ editorState, onChange }) => {
     setValues({
       linkValue: "",
       linkTitle: ""
+    });
+  };
+
+  const handleOpen = () => {
+    const selectedText = getSelectedText({ editorState });
+    setValues({
+      ...values,
+      linkTitle: selectedText
     });
   };
 
@@ -70,6 +80,7 @@ const Hyperlink = ({ editorState, onChange }) => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        onEnter={handleOpen}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center"
