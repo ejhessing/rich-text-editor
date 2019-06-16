@@ -2,7 +2,7 @@ import React from "react";
 import { RichUtils } from "draft-js";
 
 import { fontStyles } from "../../Constants/Toolbar";
-import ToolbarIcon from "../ToolbarIcon";
+import ToolbarIcon from "../../Components/ToolbarIcon";
 
 const FontStyles = ({ editorState, onChange }) => {
   const onClick = type => {

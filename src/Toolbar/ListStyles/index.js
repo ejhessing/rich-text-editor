@@ -1,6 +1,6 @@
 import React from "react";
 import { RichUtils } from "draft-js";
-import ToolbarIcon from "../ToolbarIcon";
+import ToolbarIcon from "../../Components/ToolbarIcon";
 import { listStyles } from "../../Constants/Toolbar";
 import { getBlockType } from "../../Utils/blockType";
 

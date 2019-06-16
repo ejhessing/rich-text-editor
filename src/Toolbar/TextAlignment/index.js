@@ -1,7 +1,7 @@
 import React from "react";
 import { RichUtils } from "draft-js";
 
-import ToolbarIcon from "../ToolbarIcon";
+import ToolbarIcon from "../../Components/ToolbarIcon";
 import { textAlignment } from "../../Constants/Toolbar";
 import { getBlockType } from "../../Utils/blockType";
 import "./style.css";
