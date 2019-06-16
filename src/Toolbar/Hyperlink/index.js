@@ -65,7 +65,7 @@ const Hyperlink = ({ editorState, onChange }) => {
 
   return (
     <React.Fragment>
-      <Tooltip title="Insert link...(⌘K)" placement="top">
+      <Tooltip title="Insert link" placement="top">
         <IconButton
           aria-owns={anchorEl ? "simple-menu" : undefined}
           aria-haspopup="true"

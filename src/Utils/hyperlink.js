@@ -92,7 +92,7 @@ export const removeLink = ({ editorState }) => {
       null
     );
 
-    // TODO: moce cursor to the end of the word
+    // TODO: move cursor to the end of the word
     return esWithoutLink;
   }
 };

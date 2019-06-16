@@ -6,6 +6,7 @@ import Toolbar from "../Toolbar";
 import Pop from "../Popover";
 import { getPosition, getSelected } from "../Utils";
 import { styleMap, blockMap } from "../Constants/Toolbar";
+import { keyBindingFn, handleKeyShortcuts } from "../Utils/keyBindings";
 
 const MyEditor = props => {
   const [initialized, setInitialized] = useState(false);
@@ -62,6 +63,17 @@ const MyEditor = props => {
     }, 0);
   };
 
+  const handleKeyCommand = (command, editorState) => {
+    const updatedEditorState = handleKeyShortcuts({
+      command,
+      editorState
+    });
+
+    if (updatedEditorState) {
+      onChange(updatedEditorState);
+    }
+  };
+
   return (
     <div
       style={{
@@ -85,6 +97,8 @@ const MyEditor = props => {
             ref={myEditorRef}
             blockStyleFn={blockStyleFn}
             customStyleMap={styleMap}
+            keyBindingFn={keyBindingFn}
+            handleKeyCommand={handleKeyCommand}
           />
         </div>
 
