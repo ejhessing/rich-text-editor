@@ -75,22 +75,14 @@ const MyEditor = props => {
   };
 
   return (
-    <div
-      style={{
-        background: "lightgray",
-        minHeight: "250px"
-      }}
-    >
+    <div>
       <Container maxWidth="lg">
         <Toolbar
           onChange={onChange}
           editorState={editorState}
           onDropdownChange={onDropdownChange}
         />
-        <div
-          onClick={editorFocus}
-          style={{ background: "white", minHeight: "250px", padding: "25px" }}
-        >
+        <div onClick={editorFocus} className="editor">
           <Editor
             editorState={editorState}
             onChange={onChange}

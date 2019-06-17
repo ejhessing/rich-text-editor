@@ -16,7 +16,7 @@ import Highlight from "./Highlight/index.js";
 const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
   return (
     <AppBar position="static" color="default">
-      <Toolbar style={{ background: "lightblue", minHeight: "30px" }}>
+      <Toolbar className="toolbar">
         <ToolbarGroup>
           <FontFamily
             editorState={editorState}

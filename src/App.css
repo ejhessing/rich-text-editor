@@ -2,3 +2,14 @@
   background: lightgray;
   padding: 200px;
 }
+
+.toolbar {
+  background: lightblue;
+  min-height: 30px;
+}
+
+.editor {
+  background: white;
+  min-height: 250px;
+  padding: 25px;
+}
