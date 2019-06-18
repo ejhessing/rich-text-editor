@@ -4,17 +4,26 @@ import Popover from "@material-ui/core/Popover";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
+import Button from "@material-ui/core/Button";
 
 import { colors } from "../../Constants/Toolbar";
-import { addColor } from "../../Utils/colors.js";
+import { addColor, removeColor } from "../../Utils/colors.js";
 import { forceSelection } from "../../Utils/selected.js";
 
-// TODO: Remove color
 const ColorPicker = ({ editorState, onDropdownChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [values, setValues] = React.useState({
     color: ""
   });
+
+  const onRemoveColor = () => {
+    const newEditorState = removeColor({ editorState });
+    onDropdownChange(newEditorState);
+    setValues({
+      color: ""
+    });
+    handleClose();
+  };
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
@@ -79,16 +88,21 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
           horizontal: "center"
         }}
       >
-        <div
-          style={{
-            width: "125px",
-            paddingTop: "4px",
-            paddingRight: "4px",
-            paddingLeft: "4px"
-          }}
-        >
-          {colorDivs}
-        </div>
+        <React.Fragment>
+          <div className="center">
+            <Button onClick={onRemoveColor}>none</Button>
+          </div>
+          <div
+            style={{
+              width: "125px",
+              paddingTop: "4px",
+              paddingRight: "4px",
+              paddingLeft: "4px"
+            }}
+          >
+            {colorDivs}
+          </div>
+        </React.Fragment>
       </Popover>
     </React.Fragment>
   );
