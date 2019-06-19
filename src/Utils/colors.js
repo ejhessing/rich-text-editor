@@ -95,3 +95,27 @@ export const addHighlightColor = ({ editorState, value }) => {
 
   return RichUtils.toggleInlineStyle(nextEditorState, value);
 };
+
+export const removeHighlight = ({ editorState }) => {
+  const selection = editorState.getSelection();
+  const currentContent = editorState.getCurrentContent();
+
+  const nextContentState = Object.keys(styleHighlightColor).reduce(
+    (contentState, color) =>
+      Modifier.removeInlineStyle(contentState, selection, color),
+    currentContent
+  );
+
+  let nextEditorState = EditorState.push(
+    editorState,
+    nextContentState,
+    "change-inline-style"
+  );
+
+  nextEditorState = EditorState.forceSelection(
+    nextEditorState,
+    nextEditorState.getSelection()
+  );
+
+  return nextEditorState;
+};

@@ -4,17 +4,26 @@ import Popover from "@material-ui/core/Popover";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
+import Button from "@material-ui/core/Button";
 
 import { highlights } from "../../Constants/Toolbar";
-import { addHighlightColor } from "../../Utils/colors.js";
+import { addHighlightColor, removeHighlight } from "../../Utils/colors.js";
 import { forceSelection } from "../../Utils/selected.js";
 
-// TODO : Remove highlight
 const Highlight = ({ editorState, onDropdownChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [values, setValues] = React.useState({
     highlight: ""
   });
+
+  const onRemoveHighlight = () => {
+    const newEditorState = removeHighlight({ editorState });
+    onDropdownChange(newEditorState);
+    setValues({
+      color: ""
+    });
+    handleClose();
+  };
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
@@ -80,16 +89,21 @@ const Highlight = ({ editorState, onDropdownChange }) => {
           horizontal: "center"
         }}
       >
-        <div
-          style={{
-            width: "125px",
-            paddingTop: "4px",
-            paddingRight: "4px",
-            paddingLeft: "4px"
-          }}
-        >
-          {highlightDivs}
-        </div>
+        <React.Fragment>
+          <div className="center">
+            <Button onClick={onRemoveHighlight}>none</Button>
+          </div>
+          <div
+            style={{
+              width: "125px",
+              paddingTop: "4px",
+              paddingRight: "4px",
+              paddingLeft: "4px"
+            }}
+          >
+            {highlightDivs}
+          </div>
+        </React.Fragment>
       </Popover>
     </React.Fragment>
   );
