@@ -1,12 +1,13 @@
 import { EditorState, Modifier, RichUtils } from "draft-js";
 
 import { styleTextColor, styleHighlightColor } from "../Constants/Toolbar";
+import styles from "../Constants/styles";
 
-export const addColor = ({ editorState, value }) => {
+export const addColor = ({ editorState, value, type }) => {
   const selection = editorState.getSelection();
   const currentContent = editorState.getCurrentContent();
 
-  const nextContentState = Object.keys(styleTextColor).reduce(
+  const nextContentState = Object.keys(styles[type]).reduce(
     (contentState, color) =>
       Modifier.removeInlineStyle(contentState, selection, color),
     currentContent
@@ -22,7 +23,8 @@ export const addColor = ({ editorState, value }) => {
 
   if (selection.isCollapsed()) {
     nextEditorState = currentStyle.reduce((state, color) => {
-      if (styleTextColor[color]) {
+      //TODO: fix colors being added
+      if (styles[type][color]) {
         return RichUtils.toggleInlineStyle(state, color);
       }
       return state;

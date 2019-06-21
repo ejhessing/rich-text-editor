@@ -38,7 +38,11 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
       const newEditorState = forceSelection({ editorState });
       onDropdownChange(newEditorState);
     } else {
-      const newEditorState = addColor({ editorState, value });
+      const newEditorState = addColor({
+        editorState,
+        value,
+        type: "textColor"
+      });
       onDropdownChange(newEditorState);
       setValues({ ...values, color: value });
     }
