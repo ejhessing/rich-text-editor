@@ -49,7 +49,8 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
     handleClose();
   };
   const colorDivs = colors.map(({ name, type }) => {
-    const isActive = values.color === name;
+    var currentStyle = editorState.getCurrentInlineStyle();
+    const isActive = currentStyle.has(name);
     const size = "25px";
     const shadow = isActive ? "0px 0px 0px 3px white inset" : "0px";
     return (
