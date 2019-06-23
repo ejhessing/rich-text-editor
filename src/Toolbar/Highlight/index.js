@@ -7,7 +7,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 
 import { highlights } from "../../Constants/Toolbar";
-import { addHighlightColor, removeHighlight } from "../../Utils/colors.js";
+import { addColor, removeHighlight } from "../../Utils/colors.js";
 import { forceSelection } from "../../Utils/selected.js";
 
 const Highlight = ({ editorState, onDropdownChange }) => {
@@ -38,7 +38,11 @@ const Highlight = ({ editorState, onDropdownChange }) => {
       const newEditorState = forceSelection({ editorState });
       onDropdownChange(newEditorState);
     } else {
-      const newEditorState = addHighlightColor({ editorState, value });
+      const newEditorState = addColor({
+        editorState,
+        value,
+        type: "highlightColor"
+      });
       onDropdownChange(newEditorState);
       setValues({ ...values, highlight: value });
     }
@@ -46,7 +50,8 @@ const Highlight = ({ editorState, onDropdownChange }) => {
   };
 
   const highlightDivs = highlights.map(({ name, type }) => {
-    const isActive = values.highlight === name;
+    var currentStyle = editorState.getCurrentInlineStyle();
+    const isActive = currentStyle.has(name);
     const size = "25px";
     const shadow = isActive ? "0px 0px 0px 3px white inset" : "0px";
     return (

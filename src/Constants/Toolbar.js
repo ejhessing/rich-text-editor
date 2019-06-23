@@ -268,6 +268,9 @@ export const styleHighlightColor = {
   "BACKGROUND-PINK": {
     backgroundColor: "pink"
   },
+  "BACKGROUND-GOLD": {
+    backgroundColor: "gold"
+  },
   "BACKGROUND-TEAL": {
     backgroundColor: "teal"
   }
