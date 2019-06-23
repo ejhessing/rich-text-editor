@@ -235,6 +235,9 @@ export const styleTextColor = {
   "COLOR-PINK": {
     color: "pink"
   },
+  "COLOR-GOLD": {
+    color: "gold"
+  },
   "COLOR-TEAL": {
     color: "teal"
   }

@@ -24,6 +24,9 @@ const styles = {
     "COLOR-PINK": {
       color: "pink"
     },
+    "COLOR-GOLD": {
+      color: "gold"
+    },
     "COLOR-TEAL": {
       color: "teal"
     }
@@ -52,6 +55,9 @@ const styles = {
     },
     "BACKGROUND-PINK": {
       backgroundColor: "pink"
+    },
+    "BACKGROUND-GOLD": {
+      backgroundColor: "gold"
     },
     "BACKGROUND-TEAL": {
       backgroundColor: "teal"

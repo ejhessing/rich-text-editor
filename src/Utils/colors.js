@@ -21,20 +21,16 @@ export const addColor = ({ editorState, value, type }) => {
 
   const currentStyle = editorState.getCurrentInlineStyle();
 
-  if (selection.isCollapsed()) {
-    nextEditorState = currentStyle.reduce((state, color) => {
-      //TODO: fix colors being added
-      if (styles[type][color]) {
-        return RichUtils.toggleInlineStyle(state, color);
-      }
-      return state;
-    }, nextEditorState);
-  }
+  nextEditorState = EditorState.forceSelection(nextEditorState, selection);
 
-  nextEditorState = EditorState.forceSelection(
-    nextEditorState,
-    nextEditorState.getSelection()
-  );
+  if (selection.isCollapsed()) {
+    const newStyles = currentStyle.filter(color => !styles[type][color]);
+
+    return EditorState.setInlineStyleOverride(
+      nextEditorState,
+      newStyles.add(value)
+    );
+  }
 
   return RichUtils.toggleInlineStyle(nextEditorState, value);
 };
