@@ -92,8 +92,12 @@ export const removeLink = ({ editorState }) => {
       null
     );
 
-    // TODO: move cursor to the end of the word
-    return esWithoutLink;
+    const newSelection = esWithoutLink.getSelection().merge({
+      anchorOffset: fullSelection.get("focusOffset"),
+      focusOffset: fullSelection.get("focusOffset")
+    });
+
+    return EditorState.forceSelection(esWithoutLink, newSelection);
   }
 };
 

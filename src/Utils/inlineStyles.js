@@ -3,7 +3,6 @@ import { EditorState, Modifier, RichUtils } from "draft-js";
 import styles from "../Constants/styles";
 
 export const addInlineStyle = ({ editorState, value, type }) => {
-  console.log({ value, type, styles: styles[type] });
   const selection = editorState.getSelection();
   const currentContent = editorState.getCurrentContent();
 
