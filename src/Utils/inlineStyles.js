@@ -39,8 +39,8 @@ export const removeInlineStyle = ({ editorState, type }) => {
   const currentContent = editorState.getCurrentContent();
 
   const nextContentState = Object.keys(styles[type]).reduce(
-    (contentState, color) =>
-      Modifier.removeInlineStyle(contentState, selection, color),
+    (contentState, style) =>
+      Modifier.removeInlineStyle(contentState, selection, style),
     currentContent
   );
 

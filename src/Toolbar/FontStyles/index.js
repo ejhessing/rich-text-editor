@@ -3,10 +3,12 @@ import { RichUtils } from "draft-js";
 
 import { fontStyles } from "../../Constants/Toolbar";
 import ToolbarIcon from "../../Components/ToolbarIcon";
+import { forceSelection } from "../../Utils/selected.js";
 
 const FontStyles = ({ editorState, onChange }) => {
-  const onClick = type => {
-    onChange(RichUtils.toggleInlineStyle(editorState, type));
+  const onUserInput = type => {
+    const newEditorState = forceSelection({ editorState });
+    onChange(RichUtils.toggleInlineStyle(newEditorState, type));
   };
 
   const currentStyles = editorState.getCurrentInlineStyle();
@@ -18,7 +20,7 @@ const FontStyles = ({ editorState, onChange }) => {
       <ToolbarIcon
         key={type}
         type={type}
-        onClick={onClick}
+        onUserInput={onUserInput}
         hint={hint}
         icon={icon}
         isActive={isActive}

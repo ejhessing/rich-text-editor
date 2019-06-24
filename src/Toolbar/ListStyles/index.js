@@ -4,9 +4,12 @@ import ToolbarIcon from "../../Components/ToolbarIcon";
 import { listStyles } from "../../Constants/Toolbar";
 import { getBlockType } from "../../Utils/blockType";
 
+import { forceSelection } from "../../Utils/selected.js";
+
 const ListStyles = ({ editorState, onChange }) => {
-  const onClick = type => {
-    onChange(RichUtils.toggleBlockType(editorState, type));
+  const onUserInput = type => {
+    const newEditorState = forceSelection({ editorState });
+    onChange(RichUtils.toggleBlockType(newEditorState, type));
   };
 
   const listType = getBlockType({ editorState });
@@ -18,7 +21,7 @@ const ListStyles = ({ editorState, onChange }) => {
       <ToolbarIcon
         key={type}
         type={type}
-        onClick={onClick}
+        onUserInput={onUserInput}
         hint={hint}
         icon={icon}
         isActive={isActive}
