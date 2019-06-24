@@ -7,7 +7,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 
 import { colors } from "../../Constants/Toolbar";
-import { addColor, removeColor } from "../../Utils/colors.js";
+import { addInlineStyle, removeInlineStyle } from "../../Utils/inlineStyles";
 import { forceSelection } from "../../Utils/selected.js";
 
 const ColorPicker = ({ editorState, onDropdownChange }) => {
@@ -15,9 +15,10 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
   const [values, setValues] = React.useState({
     color: ""
   });
+  const type = "textColor";
 
   const onRemoveColor = () => {
-    const newEditorState = removeColor({ editorState });
+    const newEditorState = removeInlineStyle({ editorState, type });
     onDropdownChange(newEditorState);
     setValues({
       color: ""
@@ -38,10 +39,10 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
       const newEditorState = forceSelection({ editorState });
       onDropdownChange(newEditorState);
     } else {
-      const newEditorState = addColor({
+      const newEditorState = addInlineStyle({
         editorState,
         value,
-        type: "textColor"
+        type
       });
       onDropdownChange(newEditorState);
       setValues({ ...values, color: value });

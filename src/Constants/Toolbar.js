@@ -42,26 +42,26 @@ export const textAlignment = [
 
 export const fontSizes = [
   {
-    size: "12",
-    name: "FONTSIZE-12"
+    name: "12",
+    type: "FONTSIZE-12"
   },
 
   {
-    size: "16",
-    name: "FONTSIZE-16"
+    name: "16",
+    type: "FONTSIZE-16"
   },
 
   {
-    size: "20",
-    name: "FONTSIZE-20"
+    name: "20",
+    type: "FONTSIZE-20"
   },
   {
-    size: "24",
-    name: "FONTSIZE-24"
+    name: "24",
+    type: "FONTSIZE-24"
   },
   {
-    size: "30",
-    name: "FONTSIZE-30"
+    name: "30",
+    type: "FONTSIZE-30"
   }
 ];
 
@@ -173,127 +173,3 @@ export const highlights = [
     type: "green"
   }
 ];
-
-export const styleFontSizes = {
-  "FONTSIZE-12": {
-    fontSize: "12px"
-  },
-  "FONTSIZE-16": {
-    fontSize: "16px"
-  },
-  "FONTSIZE-20": {
-    fontSize: "20px"
-  },
-  "FONTSIZE-24": {
-    fontSize: "24px"
-  },
-  "FONTSIZE-30": {
-    fontSize: "30px"
-  }
-};
-
-export const styleFontTypes = {
-  "FONT-ARIAL": {
-    fontFamily: "Arial"
-  },
-  "FONT-TIMES-NEW-ROMAN": {
-    fontFamily: "Times New Roman"
-  },
-  "FONT-COMIC-SANS-MS": {
-    fontFamily: "Comic Sans MS"
-  },
-  "FONT-COURIER-NEW": {
-    fontFamily: "Courier New"
-  },
-  "FONT-IMPACT": {
-    fontFamily: "Impact"
-  }
-};
-
-export const styleTextColor = {
-  "COLOR-BLACK": {
-    color: "black"
-  },
-  "COLOR-RED": {
-    color: "red"
-  },
-  "COLOR-BLUE": {
-    color: "blue"
-  },
-  "COLOR-GREEN": {
-    color: "green"
-  },
-  "COLOR-YELLOW": {
-    color: "yellow"
-  },
-  "COLOR-PURPLE": {
-    color: "purple"
-  },
-  "COLOR-ORANGE": {
-    color: "orange"
-  },
-  "COLOR-PINK": {
-    color: "pink"
-  },
-  "COLOR-GOLD": {
-    color: "gold"
-  },
-  "COLOR-TEAL": {
-    color: "teal"
-  }
-};
-
-export const styleHighlightColor = {
-  "BACKGROUND-WHITE": {
-    backgroundColor: "white"
-  },
-  "BACKGROUND-RED": {
-    backgroundColor: "red"
-  },
-  "BACKGROUND-BLUE": {
-    backgroundColor: "blue"
-  },
-  "BACKGROUND-GREEN": {
-    backgroundColor: "green"
-  },
-  "BACKGROUND-YELLOW": {
-    backgroundColor: "yellow"
-  },
-  "BACKGROUND-PURPLE": {
-    backgroundColor: "purple"
-  },
-  "BACKGROUND-ORANGE": {
-    backgroundColor: "orange"
-  },
-  "BACKGROUND-PINK": {
-    backgroundColor: "pink"
-  },
-  "BACKGROUND-GOLD": {
-    backgroundColor: "gold"
-  },
-  "BACKGROUND-TEAL": {
-    backgroundColor: "teal"
-  }
-};
-
-export const styleMap = {
-  ...styleFontSizes,
-  ...styleFontTypes,
-  ...styleHighlightColor,
-  ...styleTextColor
-};
-
-export const blockMap = type => {
-  switch (type) {
-    case "LEFT-ALIGN":
-      return "leftAlign";
-    case "RIGHT-ALIGN":
-      return "rightAlign";
-    case "CENTER-ALIGN":
-      return "centerAlign";
-    case "JUSTIFY-ALIGN":
-      return "justifyAlign";
-    default:
-      return "";
-  }
-};

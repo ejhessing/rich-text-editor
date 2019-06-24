@@ -5,13 +5,14 @@ import Tooltip from "@material-ui/core/Tooltip";
 import FormControl from "@material-ui/core/FormControl";
 
 import { fontFamily } from "../../Constants/Toolbar";
-import { addFontTypes } from "../../Utils/fonts";
-import { forceSelection } from "../../Utils/selected.js";
+import { addInlineStyle } from "../../Utils/inlineStyles";
 
 const FontSize = ({ editorState, onDropdownChange }) => {
   const [values, setValues] = useState({
     fontFamily: "FONT-ARIAL"
   });
+
+  const type = "fontFamily";
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -19,13 +20,8 @@ const FontSize = ({ editorState, onDropdownChange }) => {
       ...oldValues,
       [name]: value
     }));
-    if (values.fontFamily === value) {
-      const newEditorState = forceSelection({ editorState });
-      onDropdownChange(newEditorState);
-    } else {
-      const newEditorState = addFontTypes({ editorState, value });
-      onDropdownChange(newEditorState);
-    }
+    const newEditorState = addInlineStyle({ editorState, value, type });
+    onDropdownChange(newEditorState);
   };
 
   return (

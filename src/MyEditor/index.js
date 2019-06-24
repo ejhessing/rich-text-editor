@@ -5,7 +5,8 @@ import decorator from "../Decorators";
 import Toolbar from "../Toolbar";
 import Pop from "../Popover";
 import { getPosition, getSelected } from "../Utils";
-import { styleMap, blockMap } from "../Constants/Toolbar";
+import { blockMap } from "../Constants/blocks";
+import { styleMap } from "../Constants/styles";
 import { keyBindingFn, handleKeyShortcuts } from "../Utils/keyBindings";
 
 const MyEditor = props => {
