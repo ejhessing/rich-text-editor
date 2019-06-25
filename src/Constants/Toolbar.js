@@ -67,109 +67,109 @@ export const fontSizes = [
 
 export const fontFamily = [
   {
-    name: "FONT-ARIAL",
-    type: "Arial"
+    type: "FONT-ARIAL",
+    name: "Arial"
   },
   {
-    name: "FONT-TIMES-NEW-ROMAN",
-    type: "Times New Roman"
+    type: "FONT-TIMES-NEW-ROMAN",
+    name: "Times New Roman"
   },
   {
-    name: "FONT-COMIC-SANS-MS",
-    type: "Comic Sans MS"
+    type: "FONT-COMIC-SANS-MS",
+    name: "Comic Sans MS"
   },
   {
-    name: "FONT-COURIER-NEW",
-    type: "Courier New"
+    type: "FONT-COURIER-NEW",
+    name: "Courier New"
   },
   {
-    name: "FONT-IMPACT",
-    type: "Impact"
+    type: "FONT-IMPACT",
+    name: "Impact"
   }
 ];
 
 export const colors = [
   {
-    name: "COLOR-BLACK",
-    type: "black"
+    type: "COLOR-BLACK",
+    name: "black"
   },
   {
-    name: "COLOR-RED",
-    type: "red"
+    type: "COLOR-RED",
+    name: "red"
   },
   {
-    name: "COLOR-BLUE",
-    type: "blue"
+    type: "COLOR-BLUE",
+    name: "blue"
   },
   {
-    name: "COLOR-PURPLE",
-    type: "purple"
+    type: "COLOR-PURPLE",
+    name: "purple"
   },
   {
-    name: "COLOR-PINK",
-    type: "pink"
+    type: "COLOR-PINK",
+    name: "pink"
   },
   {
-    name: "COLOR-YELLOW",
-    type: "yellow"
+    type: "COLOR-YELLOW",
+    name: "yellow"
   },
   {
-    name: "COLOR-GOLD",
-    type: "gold"
+    type: "COLOR-GOLD",
+    name: "gold"
   },
   {
-    name: "COLOR-ORANGE",
-    type: "orange"
+    type: "COLOR-ORANGE",
+    name: "orange"
   },
   {
-    name: "COLOR-TEAL",
-    type: "teal"
+    type: "COLOR-TEAL",
+    name: "teal"
   },
   {
-    name: "COLOR-GREEN",
-    type: "green"
+    type: "COLOR-GREEN",
+    name: "green"
   }
 ];
 
 export const highlights = [
   {
-    name: "BACKGROUND-WHITE",
-    type: "white"
+    type: "BACKGROUND-WHITE",
+    name: "white"
   },
   {
-    name: "BACKGROUND-RED",
-    type: "red"
+    type: "BACKGROUND-RED",
+    name: "red"
   },
   {
-    name: "BACKGROUND-BLUE",
-    type: "blue"
+    type: "BACKGROUND-BLUE",
+    name: "blue"
   },
   {
-    name: "BACKGROUND-PURPLE",
-    type: "purple"
+    type: "BACKGROUND-PURPLE",
+    name: "purple"
   },
   {
-    name: "BACKGROUND-PINK",
-    type: "pink"
+    type: "BACKGROUND-PINK",
+    name: "pink"
   },
   {
-    name: "BACKGROUND-YELLOW",
-    type: "yellow"
+    type: "BACKGROUND-YELLOW",
+    name: "yellow"
   },
   {
-    name: "BACKGROUND-GOLD",
-    type: "gold"
+    type: "BACKGROUND-GOLD",
+    name: "gold"
   },
   {
-    name: "BACKGROUND-ORANGE",
-    type: "orange"
+    type: "BACKGROUND-ORANGE",
+    name: "orange"
   },
   {
-    name: "BACKGROUND-TEAL",
-    type: "teal"
+    type: "BACKGROUND-TEAL",
+    name: "teal"
   },
   {
-    name: "BACKGROUND-GREEN",
-    type: "green"
+    type: "BACKGROUND-GREEN",
+    name: "green"
   }
 ];
