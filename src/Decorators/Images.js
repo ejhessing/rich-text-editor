@@ -10,7 +10,7 @@ export const findImageEntities = (contentBlock, callback, contentState) => {
   }, callback);
 };
 
-export const Image = ({ children, contentState, entityKey, clickLink }) => {
+export const Image = ({ contentState, entityKey }) => {
   const { src, altText, width, height } = contentState
     .getEntity(entityKey)
     .getData();
