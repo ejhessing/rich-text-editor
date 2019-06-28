@@ -90,3 +90,31 @@ describe("inlineStyles - addInlineStyle", () => {
     });
   });
 });
+
+describe("inlineStyles - removeInlineStyle", () => {
+  describe("non-collapsed section", () => {
+    const editorState = new Raw()
+      .addBlock("block 1")
+      .anchorKey(0)
+      .focusKey(5)
+      .toEditorState();
+
+    const newEditorState = addInlineStyle({
+      editorState,
+      value: "COLOR-RED",
+      type: "textColor"
+    });
+
+    it("should remove the style from section", () => {
+      const editorStateAfterRemove = removeInlineStyle({
+        editorState: newEditorState,
+        type: "textColor"
+      });
+      const inlineStyleRanges = blockInlineStyleRanges(
+        editorStateAfterRemove,
+        0
+      );
+      expect(inlineStyleRanges).toEqual([]);
+    });
+  });
+});
