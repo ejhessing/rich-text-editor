@@ -1,5 +1,6 @@
 import { EditorState, Modifier, RichUtils } from "draft-js";
 
+import { forceSelection } from "./selected";
 import styles from "../Constants/styles";
 
 export const addInlineStyle = ({ editorState, value, type }) => {
@@ -56,4 +57,9 @@ export const removeInlineStyle = ({ editorState, type }) => {
   );
 
   return nextEditorState;
+};
+
+export const toggleInlineStyle = ({ editorState, type }) => {
+  const newEditorState = forceSelection({ editorState });
+  return RichUtils.toggleInlineStyle(newEditorState, type);
 };
