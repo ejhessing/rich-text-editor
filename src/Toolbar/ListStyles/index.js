@@ -1,15 +1,13 @@
 import React from "react";
-import { RichUtils } from "draft-js";
+
 import ToolbarIcon from "../../Components/ToolbarIcon";
 import { listStyles } from "../../Constants/Toolbar";
 import { getBlockType } from "../../Utils/blockType";
-
-import { forceSelection } from "../../Utils/selected.js";
+import { toggleBlockStyle } from "../../Utils/blockType";
 
 const ListStyles = ({ editorState, onChange }) => {
   const onUserInput = type => {
-    const newEditorState = forceSelection({ editorState });
-    onChange(RichUtils.toggleBlockType(newEditorState, type));
+    onChange(toggleBlockStyle({ type, editorState }));
   };
 
   const listType = getBlockType({ editorState });

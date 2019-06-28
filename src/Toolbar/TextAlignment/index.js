@@ -1,17 +1,15 @@
 import React from "react";
-import { RichUtils } from "draft-js";
 
 import ToolbarIcon from "../../Components/ToolbarIcon";
 import { textAlignment } from "../../Constants/Toolbar";
 import { getBlockType } from "../../Utils/blockType";
-import { forceSelection } from "../../Utils/selected.js";
+import { toggleBlockStyle } from "../../Utils/blockType";
 
 import "./style.css";
 
 const TextAlignment = ({ editorState, onChange }) => {
   const onUserInput = type => {
-    const newEditorState = forceSelection({ editorState });
-    onChange(RichUtils.toggleBlockType(newEditorState, type));
+    onChange(toggleBlockStyle({ type, editorState }));
   };
 
   const blockType = getBlockType({ editorState });
