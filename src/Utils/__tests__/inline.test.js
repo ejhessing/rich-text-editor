@@ -50,5 +50,43 @@ describe("inlineStyles - addInlineStyle", () => {
     });
   });
 
-  describe("Collapsed Section", () => {});
+  describe("Collapsed Section", () => {
+    const editorState = new Raw()
+      .addBlock("block 1")
+      .collapse(3)
+      .toEditorState();
+
+    const newEditorState = addInlineStyle({
+      editorState,
+      value: "COLOR-RED",
+      type: "textColor"
+    });
+
+    it("should add a customStyleOverride when adding style", () => {
+      const override = newEditorState.getInlineStyleOverride();
+      expect(override.toJS()).toEqual(OrderedSet(["COLOR-RED"]).toJS());
+    });
+
+    it("should add 2 of the same styles and show only the latest style", () => {
+      const newEditorState2 = addInlineStyle({
+        editorState: newEditorState,
+        value: "COLOR-GREEN",
+        type: "textColor"
+      });
+      const override = newEditorState2.getInlineStyleOverride();
+      expect(override.toJS()).toEqual(OrderedSet(["COLOR-GREEN"]).toJS());
+    });
+
+    it("should add 2 different styles to the same selection and show both", () => {
+      const newEditorState2 = addInlineStyle({
+        editorState: newEditorState,
+        value: "FONTSIZE-12",
+        type: "fontSizes"
+      });
+      const override = newEditorState2.getInlineStyleOverride();
+      expect(override.toJS()).toEqual(
+        OrderedSet(["COLOR-RED", "FONTSIZE-12"]).toJS()
+      );
+    });
+  });
 });
