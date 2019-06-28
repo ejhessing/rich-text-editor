@@ -23,7 +23,7 @@ export const addInlineStyle = ({ editorState, value, type }) => {
   nextEditorState = EditorState.forceSelection(nextEditorState, selection);
 
   if (selection.isCollapsed()) {
-    const newStyles = currentStyle.filter(style => !styles[type][style]);
+    const newStyles = currentStyle.filter(x => !styles[type][x]);
 
     return EditorState.setInlineStyleOverride(
       nextEditorState,
