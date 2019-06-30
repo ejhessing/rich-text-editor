@@ -1,7 +1,11 @@
 import Raw from "draft-js-raw-content-state";
 import { convertToRaw, convertFromRaw, RichUtils } from "draft-js";
 import { OrderedSet } from "immutable";
-import { addInlineStyle, removeInlineStyle } from "../inlineStyles";
+import {
+  addInlineStyle,
+  removeInlineStyle,
+  toggleInlineStyle
+} from "../inlineStyles";
 
 const blockInlineStyleRanges = (editorState, i = 0) => {
   return convertToRaw(editorState.getCurrentContent()).blocks[i]
@@ -115,6 +119,75 @@ describe("inlineStyles - removeInlineStyle", () => {
         0
       );
       expect(inlineStyleRanges).toEqual([]);
+    });
+  });
+});
+
+describe("inlineStyles - toggle", () => {
+  describe("non-collapsed section", () => {
+    const editorState = new Raw()
+      .addBlock("block 1")
+      .anchorKey(0)
+      .focusKey(5)
+      .toEditorState();
+
+    const newEditorState = toggleInlineStyle({
+      editorState,
+      type: "BOLD"
+    });
+
+    it("should add the style when toggled", () => {
+      const inlineStyleRanges = blockInlineStyleRanges(newEditorState, 0);
+      expect(inlineStyleRanges).toEqual([
+        { length: 5, offset: 0, style: "BOLD" }
+      ]);
+    });
+
+    it("should remove the style if style already on", () => {
+      const newEditorState2 = toggleInlineStyle({
+        editorState: newEditorState,
+        type: "BOLD"
+      });
+
+      const inlineStyleRanges = blockInlineStyleRanges(newEditorState2, 0);
+      expect(inlineStyleRanges).toEqual([]);
+    });
+  });
+
+  describe("collapsed section", () => {
+    const editorState = new Raw()
+      .addBlock("block 1")
+      .collapse(3)
+      .toEditorState();
+
+    const newEditorState = toggleInlineStyle({
+      editorState,
+      type: "BOLD"
+    });
+
+    it("should add the style when toggled", () => {
+      const override = newEditorState.getInlineStyleOverride();
+      expect(override.toJS()).toEqual(OrderedSet(["BOLD"]).toJS());
+    });
+
+    it("should remove the style if style already on", () => {
+      const newEditorState2 = toggleInlineStyle({
+        editorState: newEditorState,
+        type: "BOLD"
+      });
+
+      const override = newEditorState2.getInlineStyleOverride();
+      expect(override.toJS()).toEqual(OrderedSet([]).toJS());
+    });
+
+    it("should add a second style if another style already on", () => {
+      const newEditorState2 = toggleInlineStyle({
+        editorState: newEditorState,
+        type: "ITALIC"
+      });
+
+      const override = newEditorState2.getInlineStyleOverride();
+      expect(override.toJS()).toEqual(OrderedSet(["BOLD", "ITALIC"]).toJS());
     });
   });
 });

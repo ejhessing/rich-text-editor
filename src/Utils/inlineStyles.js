@@ -60,6 +60,24 @@ export const removeInlineStyle = ({ editorState, type }) => {
 };
 
 export const toggleInlineStyle = ({ editorState, type }) => {
+  const selection = editorState.getSelection();
+
+  const currentStyle = editorState.getCurrentInlineStyle();
+
   const newEditorState = forceSelection({ editorState });
+
+  if (selection.isCollapsed()) {
+    const hasStyle = currentStyle.has(type);
+    if (hasStyle) {
+      const newStyles = currentStyle.filter(x => type !== x);
+      return EditorState.setInlineStyleOverride(newEditorState, newStyles);
+    } else {
+      return EditorState.setInlineStyleOverride(
+        newEditorState,
+        currentStyle.add(type)
+      );
+    }
+  }
+
   return RichUtils.toggleInlineStyle(newEditorState, type);
 };
