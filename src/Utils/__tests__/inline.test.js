@@ -1,5 +1,5 @@
 import Raw from "draft-js-raw-content-state";
-import { convertToRaw, convertFromRaw, RichUtils } from "draft-js";
+import { convertToRaw } from "draft-js";
 import { OrderedSet } from "immutable";
 import {
   addInlineStyle,
