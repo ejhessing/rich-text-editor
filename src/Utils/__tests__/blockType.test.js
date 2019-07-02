@@ -18,6 +18,24 @@ describe("BlockType - toggleBlockStyle", () => {
       const blockType = getBlockType({ editorState: newEditorState });
       expect(blockType).toEqual("ordered-list-item");
     });
+
+    it("should change the custom block type, if a new block type is chosen", () => {
+      const newEditorState2 = toggleBlockStyle({
+        editorState: newEditorState,
+        type: "unordered-list-item"
+      });
+      const blockType = getBlockType({ editorState: newEditorState2 });
+      expect(blockType).toEqual("unordered-list-item");
+    });
+
+    it("should remove the custom block type, if the same block type is chosen", () => {
+      const newEditorState2 = toggleBlockStyle({
+        editorState: newEditorState,
+        type: "ordered-list-item"
+      });
+      const blockType = getBlockType({ editorState: newEditorState2 });
+      expect(blockType).toEqual("unstyled");
+    });
   });
 
   describe("Collapsed Section", () => {
@@ -34,6 +52,24 @@ describe("BlockType - toggleBlockStyle", () => {
     it("should add a custom block type", () => {
       const blockType = getBlockType({ editorState: newEditorState });
       expect(blockType).toEqual("ordered-list-item");
+    });
+
+    it("should change the custom block type, if a new block type is chosen", () => {
+      const newEditorState2 = toggleBlockStyle({
+        editorState: newEditorState,
+        type: "unordered-list-item"
+      });
+      const blockType = getBlockType({ editorState: newEditorState2 });
+      expect(blockType).toEqual("unordered-list-item");
+    });
+
+    it("should remove the custom block type, if the same block type is chosen", () => {
+      const newEditorState2 = toggleBlockStyle({
+        editorState: newEditorState,
+        type: "ordered-list-item"
+      });
+      const blockType = getBlockType({ editorState: newEditorState2 });
+      expect(blockType).toEqual("unstyled");
     });
   });
 });
