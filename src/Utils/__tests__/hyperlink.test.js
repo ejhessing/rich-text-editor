@@ -42,6 +42,41 @@ describe("Hyperlink - insertLink", () => {
     expect(title).toBeUndefined();
   });
 
-  it("should get the correct details if there is a link", () => {});
-  it("should not return anything if there is no link present", () => {});
+  it("should get the correct details if there is a link", () => {
+    const addSelection = newEditorState.getSelection().merge({
+      anchorOffset: 0,
+      focusOffset: 6
+    });
+
+    const esWithNewSelection = EditorState.acceptSelection(
+      newEditorState,
+      addSelection
+    );
+
+    const { link, title } = getLinkDetails({
+      editorState: esWithNewSelection
+    });
+
+    expect(link).toBe(linkValue);
+    expect(title).toBe(linkTitle);
+  });
+
+  it("should not return anything if there is no link present", () => {
+    const addSelection = newEditorState.getSelection().merge({
+      anchorOffset: 7,
+      focusOffset: 9
+    });
+
+    const esWithNewSelection = EditorState.acceptSelection(
+      newEditorState,
+      addSelection
+    );
+
+    const { link, title } = getLinkDetails({
+      editorState: esWithNewSelection
+    });
+
+    expect(link).toBeUndefined();
+    expect(title).toBeUndefined();
+  });
 });
