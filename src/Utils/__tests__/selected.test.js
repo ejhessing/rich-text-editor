@@ -1,5 +1,5 @@
 import { EditorState, convertFromHTML, ContentState } from "draft-js";
-import { getSelectedText, getSelected } from "../selected";
+import { getSelectedText, forceSelection } from "../selected";
 
 describe("Selected ", () => {
   const contentBlocks = convertFromHTML("<div>test</div>");
@@ -37,6 +37,21 @@ describe("Selected ", () => {
       const selectedText = getSelectedText({ editorState: esWithNewSelection });
 
       expect(selectedText).toBe("");
+    });
+  });
+
+  describe("Force Selection", () => {
+    const contentBlocks = convertFromHTML("<div>test</div>");
+    const contentState = ContentState.createFromBlockArray(contentBlocks);
+    const editorState = EditorState.createWithContent(contentState);
+
+    it("should make sure the selection has focus", () => {
+      const forcedEditorState = forceSelection({
+        editorState
+      });
+      const selected = forcedEditorState.getSelection();
+
+      expect(selected.hasFocus).toBe(true);
     });
   });
 });
