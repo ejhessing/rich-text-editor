@@ -1,4 +1,3 @@
-import Raw from "draft-js-raw-content-state";
 import { EditorState, convertFromHTML, ContentState } from "draft-js";
 import { insertLink, removeLink, getLinkDetails } from "../hyperlink";
 
