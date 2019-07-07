@@ -1,13 +1,21 @@
-import Raw from "draft-js-raw-content-state";
+import { EditorState, convertFromHTML, ContentState } from "draft-js";
 import { toggleBlockStyle, getBlockType } from "../blockType";
+
+const contentBlocks = convertFromHTML("<div>test</div>");
+const contentState = ContentState.createFromBlockArray(contentBlocks);
+const emptyEditorState = EditorState.createWithContent(contentState);
 
 describe("BlockType - toggleBlockStyle", () => {
   describe("Non-collapsed section", () => {
-    const editorState = new Raw()
-      .addBlock("block 1")
-      .anchorKey(0)
-      .focusKey(5)
-      .toEditorState();
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 0,
+      focusOffset: 5
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
 
     const newEditorState = toggleBlockStyle({
       editorState,
@@ -39,10 +47,15 @@ describe("BlockType - toggleBlockStyle", () => {
   });
 
   describe("Collapsed Section", () => {
-    const editorState = new Raw()
-      .addBlock("block 1")
-      .collapse(3)
-      .toEditorState();
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 7,
+      focusOffset: 7
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
 
     const newEditorState = toggleBlockStyle({
       editorState,
