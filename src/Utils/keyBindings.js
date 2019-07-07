@@ -20,8 +20,8 @@ const { hasCommandModifier } = KeyBindingUtil;
 
 const commandModifier = e => hasCommandModifier(e);
 
-const numberedListShortcut = e => e.shiftKey && e.keyCode === number7;
-const bulletedListShortcut = e => e.shiftKey && e.keyCode === number8;
+const numberedListShortcut = e => e.keyCode === number7;
+const bulletedListShortcut = e => e.keyCode === number8;
 
 const alignLeft = e => e.keyCode === letterL;
 const alignCenter = e => e.keyCode === letterE;
