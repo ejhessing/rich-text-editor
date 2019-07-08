@@ -1,11 +1,20 @@
-import Raw from "draft-js-raw-content-state";
-import { convertToRaw } from "draft-js";
+import {
+  EditorState,
+  ContentState,
+  convertFromHTML,
+  convertToRaw
+} from "draft-js";
 import { OrderedSet } from "immutable";
+
 import {
   addInlineStyle,
   removeInlineStyle,
   toggleInlineStyle
 } from "../inlineStyles";
+
+const contentBlocks = convertFromHTML("<div>test</div>");
+const contentState = ContentState.createFromBlockArray(contentBlocks);
+const emptyEditorState = EditorState.createWithContent(contentState);
 
 const blockInlineStyleRanges = (editorState, i = 0) => {
   return convertToRaw(editorState.getCurrentContent()).blocks[i]
@@ -14,11 +23,15 @@ const blockInlineStyleRanges = (editorState, i = 0) => {
 
 describe("inlineStyles - addInlineStyle", () => {
   describe("Non-collapsed section", () => {
-    const editorState = new Raw()
-      .addBlock("block 1")
-      .anchorKey(0)
-      .focusKey(5)
-      .toEditorState();
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 0,
+      focusOffset: 4
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
 
     const newEditorState = addInlineStyle({
       editorState,
@@ -31,7 +44,7 @@ describe("inlineStyles - addInlineStyle", () => {
       expect(inlineStyleRanges).toEqual([
         {
           style: "COLOR-RED",
-          length: 5,
+          length: 4,
           offset: 0
         }
       ]);
@@ -47,7 +60,7 @@ describe("inlineStyles - addInlineStyle", () => {
       expect(inlineStyleRanges).toEqual([
         {
           style: "COLOR-GREEN",
-          length: 5,
+          length: 4,
           offset: 0
         }
       ]);
@@ -55,10 +68,15 @@ describe("inlineStyles - addInlineStyle", () => {
   });
 
   describe("Collapsed Section", () => {
-    const editorState = new Raw()
-      .addBlock("block 1")
-      .collapse(3)
-      .toEditorState();
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 7,
+      focusOffset: 7
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
 
     const newEditorState = addInlineStyle({
       editorState,
@@ -97,11 +115,15 @@ describe("inlineStyles - addInlineStyle", () => {
 
 describe("inlineStyles - removeInlineStyle", () => {
   describe("non-collapsed section", () => {
-    const editorState = new Raw()
-      .addBlock("block 1")
-      .anchorKey(0)
-      .focusKey(5)
-      .toEditorState();
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 0,
+      focusOffset: 4
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
 
     const newEditorState = addInlineStyle({
       editorState,
@@ -125,11 +147,15 @@ describe("inlineStyles - removeInlineStyle", () => {
 
 describe("inlineStyles - toggle", () => {
   describe("non-collapsed section", () => {
-    const editorState = new Raw()
-      .addBlock("block 1")
-      .anchorKey(0)
-      .focusKey(5)
-      .toEditorState();
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 0,
+      focusOffset: 4
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
 
     const newEditorState = toggleInlineStyle({
       editorState,
@@ -139,7 +165,7 @@ describe("inlineStyles - toggle", () => {
     it("should add the style when toggled", () => {
       const inlineStyleRanges = blockInlineStyleRanges(newEditorState, 0);
       expect(inlineStyleRanges).toEqual([
-        { length: 5, offset: 0, style: "BOLD" }
+        { length: 4, offset: 0, style: "BOLD" }
       ]);
     });
 
@@ -155,10 +181,15 @@ describe("inlineStyles - toggle", () => {
   });
 
   describe("collapsed section", () => {
-    const editorState = new Raw()
-      .addBlock("block 1")
-      .collapse(3)
-      .toEditorState();
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 7,
+      focusOffset: 7
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
 
     const newEditorState = toggleInlineStyle({
       editorState,
