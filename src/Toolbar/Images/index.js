@@ -71,7 +71,7 @@ const Images = ({ editorState, onChange }) => {
         </IconButton>
       </Tooltip>
       <Popover
-        id={"popover-color"}
+        id={"popover-images"}
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
@@ -90,6 +90,7 @@ const Images = ({ editorState, onChange }) => {
             direction="column"
             justify="center"
             alignItems="center"
+            style={{ paddingLeft: "20px", paddingRight: "20px" }}
           >
             <Grid item>
               <TextField
@@ -111,14 +112,14 @@ const Images = ({ editorState, onChange }) => {
               />
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item style={{ paddingLeft: "20px", paddingRight: "20px" }}>
             <TextField
               label="Height"
               placeholder="auto"
               onChange={handleChange("height")}
               value={values.height}
               margin="normal"
-              style={{ width: "80px", marginRight: "15px" }}
+              style={{ width: "80px", marginRight: "20px" }}
             />
             <TextField
               label="Width"
@@ -129,12 +130,26 @@ const Images = ({ editorState, onChange }) => {
               style={{ width: "80px" }}
             />
           </Grid>
-          <Grid container direction="row" justify="center" alignItems="center">
+          <Grid
+            container
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
+            style={{
+              paddingRight: "20px",
+              marginTop: "10px",
+              marginBottom: "10px"
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={handleClose}
+              style={{ marginRight: "10px" }}
+            >
+              Cancel
+            </Button>
             <Button variant="contained" color="primary" onClick={onAddImage}>
               Save
-            </Button>
-            <Button variant="contained" onClick={handleClose}>
-              Cancel
             </Button>
           </Grid>
         </React.Fragment>
