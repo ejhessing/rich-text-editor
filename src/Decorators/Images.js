@@ -1,4 +1,5 @@
 import React from "react";
+import { imageWidth } from "../Constants/maxSize";
 
 export const findImageEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(character => {
@@ -14,5 +15,10 @@ export const Image = ({ contentState, entityKey }) => {
   const { src, altText, width, height } = contentState
     .getEntity(entityKey)
     .getData();
-  return <img src={src} alt={altText} height={height} width={width} />;
+
+  return (
+    <div style={{ width: imageWidth }}>
+      <img src={src} alt={altText} width={width} height={height} />
+    </div>
+  );
 };

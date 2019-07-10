@@ -1,8 +1,9 @@
 import React from "react";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import ToolbarGroup from "@material-ui/core/Toolbar";
-import ToolbarSeparator from "@material-ui/core/Toolbar";
+
 import FontFamily from "./FontFamily/index.js";
 import FontSize from "./FontSize/index.js";
 import FontStyles from "./FontStyles/index.js";
@@ -12,6 +13,14 @@ import Images from "./Images/index.js";
 import TextAlignment from "./TextAlignment/index.js";
 import ColorPicker from "./ColorPicker/index.js";
 import Highlight from "./Highlight/index.js";
+
+const Separator = () => (
+  <div
+    style={{
+      paddingRight: "25px"
+    }}
+  />
+);
 
 const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
   return (
@@ -26,8 +35,10 @@ const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
             editorState={editorState}
             onDropdownChange={onDropdownChange}
           />
-          <ToolbarSeparator style={{ height: "25px" }} />
+          <Separator />
           <FontStyles onChange={onChange} editorState={editorState} />
+          <Separator />
+          {/* </Separator> */}
           <ColorPicker
             editorState={editorState}
             onDropdownChange={onDropdownChange}
@@ -36,12 +47,15 @@ const MyToolbar = ({ onChange, editorState, onDropdownChange }) => {
             editorState={editorState}
             onDropdownChange={onDropdownChange}
           />
-          <ToolbarSeparator style={{ height: "25px" }} />
+          <Separator />
+
           <ListStyles onChange={onChange} editorState={editorState} />
-          <ToolbarSeparator style={{ height: "25px" }} />
+          <Separator />
+
           <Hyperlink onChange={onChange} editorState={editorState} />
           <Images onChange={onChange} editorState={editorState} />
-          <ToolbarSeparator style={{ height: "25px" }} />
+          <Separator />
+
           <TextAlignment onChange={onChange} editorState={editorState} />
         </ToolbarGroup>
       </Toolbar>
