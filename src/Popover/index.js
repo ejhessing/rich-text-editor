@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popover from "@material-ui/core/Popover";
 import Grid from "@material-ui/core/Grid";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
-import TextField from "@material-ui/core/TextField";
+import HyperlinkPopover from "./HyperlinkPopover.js";
 
-import { insertLink, removeLink, getLinkDetails } from "../Utils/hyperlink";
+import { removeLink, getLinkDetails } from "../Utils/hyperlink";
 
 const Pop = props => {
   const { popoverOpen, position, onClose, editorState, onChange } = props;
-  const { link, title } = getLinkDetails({ editorState });
+
   const [values, setValues] = useState({
-    newLink: "",
+    linkValue: "",
+    linkTitle: "",
     editMode: false
   });
 
@@ -19,30 +20,36 @@ const Pop = props => {
 
   const topPos = top + height || 0;
 
+  useEffect(() => {
+    if (!values.linkTitle) {
+      const { link, title } = getLinkDetails({ editorState });
+
+      setValues({
+        ...values,
+        linkValue: values.linkValue || link,
+        linkTitle: values.linkTitle || title
+      });
+    }
+  }, [editorState, values]);
+
   const onRemoveLink = () => {
     const esWithoutLink = removeLink({ editorState });
     onChange(esWithoutLink);
     resetAndClose();
   };
 
-  const onEditClick = () => {
-    setValues({ ...values, newLink: link, editMode: true });
+  const onEditClick = e => {
+    setValues({ ...values, editMode: true });
   };
 
-  const onSaveClick = () => {
-    const linkValue = values.newLink;
-    const linkTitle = title;
-    const newEditorState = insertLink({ editorState, linkValue, linkTitle });
-    onChange(newEditorState);
-    resetAndClose();
-  };
   const resetAndClose = () => {
     onClose();
-    setValues({ ...values, newLink: link, editMode: false });
-  };
-
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
+    setValues({
+      ...values,
+      linkValue: "",
+      linkTitle: "",
+      editMode: false
+    });
   };
 
   return (
@@ -61,60 +68,52 @@ const Pop = props => {
         horizontal: "center"
       }}
     >
-      <div style={{ width: "300px" }}>
-        <Grid container alignItems="center">
-          <Grid item xs={8}>
-            {link && !values.editMode && (
-              <React.Fragment>
-                <Icon
-                  style={{
-                    display: "inline-flex",
-                    verticalAlign: "middle",
-                    padding: "5px"
-                  }}
-                >
-                  web
-                </Icon>
-                <a
-                  href={link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ paddingLeft: "10px" }}
-                  className="align-middle"
-                >
-                  {link}
-                </a>
-              </React.Fragment>
-            )}
-            {values.editMode && (
-              <TextField
-                value={values.newLink}
-                onChange={handleChange("newLink")}
-              />
-            )}
+      <Grid container alignItems="center">
+        {values.linkValue && !values.editMode && (
+          <Grid item style={{ width: "150px" }}>
+            <React.Fragment>
+              <Icon
+                style={{
+                  display: "inline-flex",
+                  verticalAlign: "middle",
+                  padding: "5px"
+                }}
+              >
+                web
+              </Icon>
+              <a
+                href={values.linkValue}
+                rel="noopener noreferrer"
+                target="_blank"
+                style={{ paddingLeft: "10px" }}
+                className="align-middle"
+              >
+                {values.linkValue}
+              </a>
+            </React.Fragment>
           </Grid>
-          {!values.editMode && (
-            <Grid item>
-              <IconButton onClick={onEditClick}>
-                <Icon>edit</Icon>
-              </IconButton>
-              <IconButton onClick={onRemoveLink}>
-                <Icon>link_off</Icon>
-              </IconButton>
-            </Grid>
-          )}
-          {values.editMode && (
-            <Grid item>
-              <IconButton onClick={onSaveClick}>
-                <Icon>save</Icon>
-              </IconButton>
-              <IconButton onClick={resetAndClose}>
-                <Icon>cancel</Icon>
-              </IconButton>
-            </Grid>
-          )}
-        </Grid>
-      </div>
+        )}
+        {values.editMode && (
+          <Grid item>
+            <HyperlinkPopover
+              onChange={onChange}
+              editorState={editorState}
+              values={values}
+              setValues={setValues}
+            />
+          </Grid>
+        )}
+        {!values.editMode && (
+          <Grid item>
+            <IconButton onClick={onEditClick}>
+              <Icon>edit</Icon>
+            </IconButton>
+            <IconButton onClick={onRemoveLink}>
+              <Icon>link_off</Icon>
+            </IconButton>
+          </Grid>
+        )}
+      </Grid>
     </Popover>
   );
 };

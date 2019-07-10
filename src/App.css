@@ -1,6 +1,7 @@
 .App {
   background: lightgray;
-  padding: 200px;
+  height: 100vh;
+  padding: 150px;
 }
 
 .toolbar {
