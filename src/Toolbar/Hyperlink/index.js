@@ -76,7 +76,7 @@ const Hyperlink = ({ editorState, onChange }) => {
       </Tooltip>
 
       <Popover
-        id={"popover-color"}
+        id={"popover-hyperlink"}
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
@@ -96,6 +96,7 @@ const Hyperlink = ({ editorState, onChange }) => {
             direction="column"
             justify="center"
             alignItems="center"
+            style={{ paddingLeft: "20px", paddingRight: "20px" }}
           >
             <Grid item>
               <TextField
@@ -117,17 +118,32 @@ const Hyperlink = ({ editorState, onChange }) => {
               />
             </Grid>
           </Grid>
-          <Grid container direction="row" justify="center" alignItems="center">
+          <Grid
+            container
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
+            style={{
+              paddingRight: "20px",
+              marginTop: "10px",
+              marginBottom: "10px"
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={handleClose}
+              style={{ marginRight: "10px" }}
+            >
+              Cancel
+            </Button>
             <Button
               variant="contained"
               color="primary"
               onClick={onAddLink}
               disabled={isEmpty(values.linkValue)}
+              style={{ paddingLeft: "20px" }}
             >
               Save
-            </Button>
-            <Button variant="contained" onClick={handleClose}>
-              Cancel
             </Button>
           </Grid>
         </React.Fragment>
