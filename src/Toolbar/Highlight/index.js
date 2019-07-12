@@ -64,7 +64,9 @@ const Highlight = ({ editorState, onDropdownChange }) => {
           height: size,
           width: size,
           display: "inline-flex",
-          boxShadow: shadow
+          boxShadow: shadow,
+
+          margin: "1px"
         }}
       />
     );
@@ -95,21 +97,19 @@ const Highlight = ({ editorState, onDropdownChange }) => {
           horizontal: "center"
         }}
       >
-        <React.Fragment>
+        <div style={{ padding: "20px", background: "#f5f5f5" }}>
           <div className="center">
             <Button onClick={onRemoveHighlight}>none</Button>
           </div>
           <div
             style={{
-              width: "125px",
-              paddingTop: "4px",
-              paddingRight: "4px",
-              paddingLeft: "4px"
+              width: "135px",
+              padding: "4px"
             }}
           >
             {highlightDivs}
           </div>
-        </React.Fragment>
+        </div>
       </Popover>
     </React.Fragment>
   );
