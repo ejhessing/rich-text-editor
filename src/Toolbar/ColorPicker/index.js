@@ -94,7 +94,6 @@ const ColorPicker = ({ editorState, onDropdownChange }) => {
           vertical: "top",
           horizontal: "center"
         }}
-        style={{}}
       >
         <div style={{ padding: "20px", background: "#f5f5f5" }}>
           <div className="center">
