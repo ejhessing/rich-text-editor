@@ -143,6 +143,34 @@ describe("inlineStyles - removeInlineStyle", () => {
       expect(inlineStyleRanges).toEqual([]);
     });
   });
+
+  describe("Collapsed Section", () => {
+    const addSelection = emptyEditorState.getSelection().merge({
+      anchorOffset: 7,
+      focusOffset: 7
+    });
+
+    const editorState = EditorState.acceptSelection(
+      emptyEditorState,
+      addSelection
+    );
+
+    const newEditorState = addInlineStyle({
+      editorState,
+      value: "COLOR-RED",
+      type: "textColor"
+    });
+
+    it("should remove style", () => {
+      const editorStateAfterRemove = removeInlineStyle({
+        editorState: newEditorState,
+        type: "textColor"
+      });
+
+      const override = editorStateAfterRemove.getInlineStyleOverride();
+      expect(override.toJS()).toEqual(OrderedSet([]).toJS());
+    });
+  });
 });
 
 describe("inlineStyles - toggle", () => {
