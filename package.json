@@ -14,7 +14,7 @@
     "draft-js": "^0.10.5",
     "draft-js-raw-content-state": "^1.2.7",
     "draftjs-utils": "^0.9.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
